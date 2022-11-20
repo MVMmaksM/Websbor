@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Websbor.Password_Respondents
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Websbor.Password_Respondents", "Websbor.Password_Respondents\Websbor.Password_Respondents.csproj", "{0EDD00A3-E42A-4B26-A600-8E60F4264418}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Websbor.PasswordRespondents", "Websbor.Password_Respondents\Websbor.PasswordRespondents.csproj", "{0EDD00A3-E42A-4B26-A600-8E60F4264418}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
