@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Websbor.Password_Respondents.Models
+namespace Websbor.PasswordRespondents.Models
 {
     internal class ModelRespondents
     {

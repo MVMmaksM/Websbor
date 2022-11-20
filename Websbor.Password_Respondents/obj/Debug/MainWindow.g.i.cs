@@ -29,10 +29,10 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
-using Websbor.Password_Respondents;
+using Websbor.PasswordRespondents;
 
 
-namespace Websbor.Password_Respondents {
+namespace Websbor.PasswordRespondents {
     
     
     /// <summary>

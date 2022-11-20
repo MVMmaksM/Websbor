@@ -1,7 +1,7 @@
-﻿<Application x:Class="Websbor.Password_Respondents.App"
+﻿<Application x:Class="Websbor.PasswordRespondents.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Websbor.Password_Respondents"
+             xmlns:local="clr-namespace:Websbor.PasswordRespondents"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

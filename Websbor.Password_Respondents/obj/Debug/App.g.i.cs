@@ -29,10 +29,10 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
-using Websbor.Password_Respondents;
+using Websbor.PasswordRespondents;
 
 
-namespace Websbor.Password_Respondents {
+namespace Websbor.PasswordRespondents {
     
     
     /// <summary>
@@ -61,7 +61,7 @@ namespace Websbor.Password_Respondents {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
-            Websbor.Password_Respondents.App app = new Websbor.Password_Respondents.App();
+            Websbor.PasswordRespondents.App app = new Websbor.PasswordRespondents.App();
             app.InitializeComponent();
             app.Run();
         }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Websbor.Password_Respondents.Properties
+namespace Websbor.PasswordRespondents.Properties
 {
 
 
