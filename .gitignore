@@ -1,0 +1,9 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/**
+/.vs/VSWorkspaceState.json
+/.vs/slnx.sqlite
+/.vs/MyFisrtRepository/v17/.suo
+/.vs/MyFisrtRepository/config/applicationhost.config
