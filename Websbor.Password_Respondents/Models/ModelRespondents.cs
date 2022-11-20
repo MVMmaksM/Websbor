@@ -17,17 +17,11 @@ namespace Websbor.PasswordRespondents.Models
         private DataColumn _userCreate;
         private DataColumn _dateUpdate;
         private DataColumn _userUpdate;
-
-        public DataColumn ID { get => _id; }
-        public DataColumn NameResp { get => _nameResp; }
-        public DataColumn OkpoResp { get => _okpoResp; }
-        public DataColumn PasswordResp { get => _passwordResp; }
-        public DataColumn DateCreate { get => _dateCreate; }
-        public DataColumn UserCreate { get => _userCreate; }
-        public DataColumn DateUpdate { get => _dateUpdate; }
-        public DataColumn UserUpdate { get => _userUpdate; }
+        private DataColumn[] _modelDataColumn;
+        public DataColumn [] ModelDataColumn { get => _modelDataColumn;}        
         public ModelRespondents()
         {
+            
             _id = new DataColumn("id", typeof(int));            
             //_id.AllowDBNull = false;       при добавлении записи возможна ошибка, т.к. id возвращается из базы
             _nameResp = new DataColumn("nameResp", typeof(string));
@@ -37,6 +31,9 @@ namespace Websbor.PasswordRespondents.Models
             _userCreate = new DataColumn("userCreate", typeof(string));
             _dateUpdate = new DataColumn("dateUpdate", typeof(DateTime));
             _userUpdate = new DataColumn("userUpdate", typeof(string));
+            
+            _modelDataColumn = new DataColumn[8] { _id, _nameResp,_okpoResp, _passwordResp, _dateCreate, _userCreate,
+            _dateUpdate, _userUpdate};            
         }
     }
 }
