@@ -12,7 +12,7 @@ namespace Websbor.PasswordRespondents.ViewModel
     {
         private DataTable _dtPasswordRespondents;
         private ModelRespondents _modelRespondents;
-        public DataTable DTPasswordRespondents { get => _dtPasswordRespondents; }
+        public DataTable DTPasswordRespondents { get => _dtPasswordRespondents; set => _dtPasswordRespondents = value; }
         public ViewModelPasswordRespondents()
         {
             _modelRespondents = new ModelRespondents();
