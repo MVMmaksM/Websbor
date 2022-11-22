@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Websbor.Password_Respondents.ViewModel;
 
 namespace Websbor.Password_Respondents.DataBaseServices
 {
@@ -13,9 +14,9 @@ namespace Websbor.Password_Respondents.DataBaseServices
         private string _connectionString;
         private SqlDataAdapter _sqlDataAdapter;
         
-        public DataBaseWork(string connectionString)
+        public DataBaseWork(IConnectionString connectionString)
         {
-            _connectionString = connectionString;          
+            _connectionString = connectionString.ConnectionString;          
 
             _sqlDataAdapter = new SqlDataAdapter();
             _sqlDataAdapter.SelectCommand = GetSqlCommandSelect();
@@ -24,7 +25,7 @@ namespace Websbor.Password_Respondents.DataBaseServices
             _sqlDataAdapter.DeleteCommand = GetSqlCommandDelete();
         }
 
-        public void GetDataDB(DataTable dataTablePasswordRespondents)
+        public void GetAllRows(DataTable dataTableFillAllRows)
         {
             using (SqlConnection sqlConnectionGetDB = new SqlConnection(_connectionString))
             {
