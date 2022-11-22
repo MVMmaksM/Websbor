@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Websbor.PasswordRespondents"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        
+        <DataGrid x:Name="dgPasswordRespondents" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id" Binding="{Binding Path=id}"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=name_resp}"/>
+                <DataGridTextColumn Header="ОКПО" Binding="{Binding Path=okpo_resp}"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Path=password_resp}"/>
+                <DataGridTextColumn Header="Дата создания" Binding="{Binding Path=date_create}"/>
+                <DataGridTextColumn Header="Пользователь, создавший запись" Binding="{Binding Path=user_create}"/>
+                <DataGridTextColumn Header="Дата изменения" Binding ="{Binding Path=date_update}"/>
+                <DataGridTextColumn Header="Пользователь, измнивший запись" Binding="{Binding Path=user_update}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

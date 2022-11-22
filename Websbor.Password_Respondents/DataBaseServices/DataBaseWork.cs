@@ -5,9 +5,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Websbor.Password_Respondents.ViewModel;
+using Websbor.PasswordRespondents.ViewModel;
 
-namespace Websbor.Password_Respondents.DataBaseServices
+namespace Websbor.PasswordRespondents.DataBaseServices
 {
     internal class DataBaseWork
     {
@@ -23,6 +23,7 @@ namespace Websbor.Password_Respondents.DataBaseServices
         {
             using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
             {
+                sqlDataAdapter.SelectCommand.Connection= sqlConnection;
                 sqlDataAdapter.Fill(dataTable);
             }
         }
@@ -31,6 +32,7 @@ namespace Websbor.Password_Respondents.DataBaseServices
         {
             using (SqlConnection sqlConnection = new SqlConnection(_connectionString)) 
             {
+                sqlDataAdapter.UpdateCommand.Connection = sqlConnection;
                 sqlDataAdapter.Update(dataTable);
             }          
         }       

@@ -24,13 +24,13 @@ namespace Websbor.PasswordRespondents.Models
             
             _id = new DataColumn("id", typeof(int));            
             //_id.AllowDBNull = false;       при добавлении записи возможна ошибка, т.к. id возвращается из базы
-            _nameResp = new DataColumn("nameResp", typeof(string));
-            _okpoResp = new DataColumn("okpoResp", typeof(string));
-            _passwordResp = new DataColumn("passwordResp", typeof(string));
-            _dateCreate = new DataColumn("dateCreate", typeof(DateTime));
-            _userCreate = new DataColumn("userCreate", typeof(string));
-            _dateUpdate = new DataColumn("dateUpdate", typeof(DateTime));
-            _userUpdate = new DataColumn("userUpdate", typeof(string));
+            _nameResp = new DataColumn("name_resp", typeof(string));
+            _okpoResp = new DataColumn("okpo_resp", typeof(string));
+            _passwordResp = new DataColumn("password_resp", typeof(string));
+            _dateCreate = new DataColumn("date_create", typeof(DateTime));
+            _userCreate = new DataColumn("user_create", typeof(string));
+            _dateUpdate = new DataColumn("date_update", typeof(DateTime));
+            _userUpdate = new DataColumn("user_update", typeof(string));
             
             _modelDataColumn = new DataColumn[8] { _id, _nameResp,_okpoResp, _passwordResp, _dateCreate, _userCreate,
             _dateUpdate, _userUpdate};            

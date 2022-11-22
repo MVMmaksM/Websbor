@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Websbor.Password_Respondents.ViewModel
+namespace Websbor.PasswordRespondents.ViewModel
 {
     internal interface IConnectionString
     {
