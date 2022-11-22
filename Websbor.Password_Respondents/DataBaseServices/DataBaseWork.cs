@@ -12,68 +12,27 @@ namespace Websbor.Password_Respondents.DataBaseServices
     internal class DataBaseWork
     {
         private string _connectionString;
-        private SqlDataAdapter _sqlDataAdapter;
+     
         
         public DataBaseWork(IConnectionString connectionString)
         {
-            _connectionString = connectionString.ConnectionString;          
-
-            _sqlDataAdapter = new SqlDataAdapter();
-            _sqlDataAdapter.SelectCommand = GetSqlCommandSelect();
-            _sqlDataAdapter.InsertCommand = GetSqlCommandInsert();
-            _sqlDataAdapter.UpdateCommand = GetSqlCommandUpdate();
-            _sqlDataAdapter.DeleteCommand = GetSqlCommandDelete();
+            _connectionString = connectionString.ConnectionString;                  
         }
 
-        public void GetAllRows(DataTable dataTableFillAllRows)
+        public void ExecDataAdapterFillToDataTable(DataTable dataTable, SqlDataAdapter sqlDataAdapter)
         {
-            using (SqlConnection sqlConnectionGetDB = new SqlConnection(_connectionString))
+            using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
             {
-
+                sqlDataAdapter.Fill(dataTable);
             }
         }
 
-        private SqlCommand GetSqlCommandSelect() => new SqlCommand("sp_select_password") { CommandType = CommandType.StoredProcedure };
-        private SqlCommand GetSqlCommandUpdate()
+        public void ExecDataAdapterUpdateToDataTable(DataTable dataTable, SqlDataAdapter sqlDataAdapter) 
         {
-            SqlCommand sqlCommandUpdate = new SqlCommand("sp_update_password");
-            sqlCommandUpdate.CommandType = CommandType.StoredProcedure;
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 0, "id").Direction = ParameterDirection.Input);
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 15, "nameResp").Direction = ParameterDirection.Input);
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@okpo_resp", SqlDbType.NVarChar, 15, "okpoResp").Direction = ParameterDirection.Input);
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 10, "passwordResp").Direction = ParameterDirection.Input);
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@date_update", SqlDbType.DateTime, 0, "dateUpdate").Direction = ParameterDirection.Output);
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@user_update", SqlDbType.NVarChar, 10, "userUpdate").Direction = ParameterDirection.Output);
-
-            return sqlCommandUpdate;
-        }
-        private SqlCommand GetSqlCommandInsert()
-        {
-            SqlCommand sqlCommandInsert = new SqlCommand("sp_insert_password");
-            sqlCommandInsert.CommandType = CommandType.StoredProcedure;
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 0, "id").Direction = ParameterDirection.Output);
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 50, "nameResp").Direction = ParameterDirection.Input);
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@okpo_resp", SqlDbType.NVarChar, 15, "okpoResp").Direction = ParameterDirection.Input);
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 10, "passwordResp").Direction = ParameterDirection.Input);
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@date_create", SqlDbType.DateTime, 0, "dateCreate").Direction = ParameterDirection.Output);
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@user_create", SqlDbType.NVarChar, 10, "userCreate").Direction = ParameterDirection.Output);
-
-            return sqlCommandInsert;
-        }
-        private SqlCommand GetSqlCommandDelete()
-        {
-            SqlCommand sqlCommandDelete = new SqlCommand("sp_delete_password");
-            sqlCommandDelete.CommandType = CommandType.StoredProcedure;
-            sqlCommandDelete.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 0, "id").Direction = ParameterDirection.Input);
-            return sqlCommandDelete;
-        }
-        private SqlCommand GetSqlCommandSearch(string searchNameTextBoxInput, string searchOkpoTextBoxInput) 
-        {
-            SqlCommand sqlCommandSearch = new SqlCommand("sp_search_password");
-            sqlCommandSearch.CommandType = CommandType.StoredProcedure;
-            sqlCommandSearch.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 50, searchNameTextBoxInput).Direction= ParameterDirection.Input);
-            sqlCommandSearch.Parameters.Add(new SqlParameter("@okpo_resp", SqlDbType.NVarChar, 50, searchOkpoTextBoxInput).Direction= ParameterDirection.Input);
-            return sqlCommandSearch;
-        }
+            using (SqlConnection sqlConnection = new SqlConnection(_connectionString)) 
+            {
+                sqlDataAdapter.Update(dataTable);
+            }          
+        }       
     }
 }
