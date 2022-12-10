@@ -19,8 +19,10 @@
                 <DataGridTextColumn Header="Пользователь, измнивший запись" Binding="{Binding Path=user_update}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Margin="0,248,0,20">
-            <Button x:Name="BtnUpdate" Content="Обновить" Width="100" Height="20" HorizontalAlignment="Left" Margin="20" Click="BtnUpdate_Click"/>
+        <StackPanel Margin="0,0,0,20" Height="64" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <Button x:Name="BtnUpdate" Content="Обновить" Width="100" Height="20" HorizontalAlignment="Left" Margin="10" Click="BtnUpdate_Click"/>
+            <Button x:Name="BtnShowAllRows" Content="Показать все записи" Width="120" Height="20" HorizontalAlignment="Left" Margin="0" Click="BtnUpdate_Click"/>
         </StackPanel>
+        <StatusBar Margin="0,0,0,0" Background="#FF929292" Height="20" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
