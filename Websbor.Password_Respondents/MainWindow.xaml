@@ -19,5 +19,8 @@
                 <DataGridTextColumn Header="Пользователь, измнивший запись" Binding="{Binding Path=user_update}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Margin="0,248,0,20">
+            <Button x:Name="BtnUpdate" Content="Обновить" Width="100" Height="20" HorizontalAlignment="Left" Margin="20" Click="BtnUpdate_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

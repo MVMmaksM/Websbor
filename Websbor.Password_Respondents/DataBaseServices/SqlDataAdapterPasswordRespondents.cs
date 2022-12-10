@@ -26,11 +26,11 @@ namespace Websbor.PasswordRespondents.DataBaseServices
             SqlCommand sqlCommandUpdate = new SqlCommand("sp_update_password");
             sqlCommandUpdate.CommandType = CommandType.StoredProcedure;
             sqlCommandUpdate.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 0, "id") { Direction = ParameterDirection.Input });
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 15, "nameResp") { Direction = ParameterDirection.Input });
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@okpo_resp", SqlDbType.NVarChar, 15, "okpoResp") { Direction = ParameterDirection.Input });
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 10, "passwordResp") { Direction = ParameterDirection.Input });
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@date_update", SqlDbType.DateTime, 0, "dateUpdate") { Direction = ParameterDirection.Output });
-            sqlCommandUpdate.Parameters.Add(new SqlParameter("@user_update", SqlDbType.NVarChar, 10, "userUpdate") { Direction = ParameterDirection.Output });
+            sqlCommandUpdate.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 15, "name_resp") { Direction = ParameterDirection.Input });
+            sqlCommandUpdate.Parameters.Add(new SqlParameter("@okpo_resp", SqlDbType.NVarChar, 15, "okpo_resp") { Direction = ParameterDirection.Input });
+            sqlCommandUpdate.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 10, "password_resp") { Direction = ParameterDirection.Input });
+            sqlCommandUpdate.Parameters.Add(new SqlParameter("@date_update", SqlDbType.DateTime, 0, "date_update") { Direction = ParameterDirection.Output });
+            sqlCommandUpdate.Parameters.Add(new SqlParameter("@user_update", SqlDbType.NVarChar, 10, "user_update") { Direction = ParameterDirection.Output });
 
             return sqlCommandUpdate;
         }
@@ -39,11 +39,11 @@ namespace Websbor.PasswordRespondents.DataBaseServices
             SqlCommand sqlCommandInsert = new SqlCommand("sp_insert_password");
             sqlCommandInsert.CommandType = CommandType.StoredProcedure;
             sqlCommandInsert.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 0, "id") { Direction = ParameterDirection.Output });
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 50, "nameResp") { Direction = ParameterDirection.Input });
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@okpo_resp", SqlDbType.NVarChar, 15, "okpoResp") { Direction = ParameterDirection.Input });
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 10, "passwordResp") { Direction = ParameterDirection.Input });
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@date_create", SqlDbType.DateTime, 0, "dateCreate") { Direction = ParameterDirection.Output });
-            sqlCommandInsert.Parameters.Add(new SqlParameter("@user_create", SqlDbType.NVarChar, 10, "userCreate") { Direction = ParameterDirection.Output });
+            sqlCommandInsert.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 50, "name_resp") { Direction = ParameterDirection.Input });
+            sqlCommandInsert.Parameters.Add(new SqlParameter("@okpo_resp", SqlDbType.NVarChar, 15, "okpo_Resp") { Direction = ParameterDirection.Input });
+            sqlCommandInsert.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 10, "password_resp") { Direction = ParameterDirection.Input });
+            sqlCommandInsert.Parameters.Add(new SqlParameter("@date_create", SqlDbType.DateTime, 0, "date_create") { Direction = ParameterDirection.Output });
+            sqlCommandInsert.Parameters.Add(new SqlParameter("@user_create", SqlDbType.NVarChar, 10, "user_create") { Direction = ParameterDirection.Output });
 
             return sqlCommandInsert;
         }

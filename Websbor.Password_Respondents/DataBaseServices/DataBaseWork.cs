@@ -33,6 +33,8 @@ namespace Websbor.PasswordRespondents.DataBaseServices
             using (SqlConnection sqlConnection = new SqlConnection(_connectionString)) 
             {
                 sqlDataAdapter.UpdateCommand.Connection = sqlConnection;
+                sqlDataAdapter.InsertCommand.Connection= sqlConnection;
+                sqlDataAdapter.DeleteCommand.Connection = sqlConnection;                
                 sqlDataAdapter.Update(dataTable);
             }          
         }       

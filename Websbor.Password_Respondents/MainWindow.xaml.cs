@@ -20,6 +20,10 @@ namespace Websbor.PasswordRespondents
 {
     public partial class MainWindow : Window
     {
+        private DataBaseWork _dataBaseWork;
+        private ViewModelPasswordRespondents _viewModelPasswordRespondents;
+        private SqlDataAdapterPasswordRespondents _sqlDataAdapterPasswordRespondents;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,18 +31,22 @@ namespace Websbor.PasswordRespondents
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ViewModelPasswordRespondents viewModelPasswordRespondents = new ViewModelPasswordRespondents();
-            dgPasswordRespondents.ItemsSource = viewModelPasswordRespondents.DTPasswordRespondents.DefaultView;
+            _viewModelPasswordRespondents = new ViewModelPasswordRespondents();
+            dgPasswordRespondents.ItemsSource = _viewModelPasswordRespondents.DTPasswordRespondents.DefaultView;
 
             Websbor.PasswordRespondents.Setting.Settings settings = new Websbor.PasswordRespondents.Setting.Settings();
             settings.ConnectionString = "Initial Catalog=WebSbor_Password_Respondents;Data Source=DESKTOP-ABQGH3T;Integrated Security=True";
             
-            SqlDataAdapterPasswordRespondents sqlDataAdapterPasswordRespondents = new SqlDataAdapterPasswordRespondents();
+           _sqlDataAdapterPasswordRespondents = new SqlDataAdapterPasswordRespondents();
             
-            DataBaseWork dataBaseWork = new DataBaseWork(settings);
-            dataBaseWork.ExecDataAdapterFillToDataTable(viewModelPasswordRespondents.DTPasswordRespondents, sqlDataAdapterPasswordRespondents.sqlDataAdapter);
+            _dataBaseWork = new DataBaseWork(settings);
+            _dataBaseWork.ExecDataAdapterFillToDataTable(_viewModelPasswordRespondents.DTPasswordRespondents, _sqlDataAdapterPasswordRespondents.sqlDataAdapter);
+        }
 
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
 
+            _dataBaseWork.ExecDataAdapterUpdateToDataTable(_viewModelPasswordRespondents.DTPasswordRespondents, _sqlDataAdapterPasswordRespondents.sqlDataAdapter);
         }
     }
 }
