@@ -16,7 +16,7 @@ namespace Websbor.Password_Respondents.Services
             string name = assemblyInfo.GetName().Name.ToString();
             Version version = assemblyInfo.GetName().Version;
 
-            return $"{name} ver.{version.Major}.{version.Minor} build[{version.Build}]";
+            return $"{name} ver. {version.Major}.{version.Minor} build[{version.Build}]";
         }
     }
 }
