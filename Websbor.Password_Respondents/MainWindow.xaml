@@ -7,7 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="dgPasswordRespondents" AutoGenerateColumns="False">
+        <Menu Height="20" VerticalAlignment="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Сохранить текущие записи в Excel" Click="MenuSaveAllRowsInExcel_Click"/>
+                <MenuItem Header="Сохранить все записи в Excel" Click="MenuSaveCurrentRowsInExcel_Click"/>
+            </MenuItem>
+            <MenuItem Header="logs">
+                <MenuItem Header="Открыть текущий log-файл" Click="MenuOpenCurrentLog_Click"/>
+                <MenuItem Header="Открыть папку log" Click="MenuOpenFolderLog_Click"/>
+            </MenuItem>
+            <MenuItem Header="Настройки" Click="MenuOpenSettings_Click"/>
+            <MenuItem Header="О программе" Click="MenuOpenReadme_Click"/>
+        </Menu>
+        <DataGrid x:Name="dgPasswordRespondents" AutoGenerateColumns="False" Margin="0,20,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="id" Binding="{Binding Path=id}"/>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Path=name_resp}"/>

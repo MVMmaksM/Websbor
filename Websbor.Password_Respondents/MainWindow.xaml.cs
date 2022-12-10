@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +48,35 @@ namespace Websbor.PasswordRespondents
         {
 
             _dataBaseWork.ExecDataAdapterUpdateToDataTable(_viewModelPasswordRespondents.DTPasswordRespondents, _sqlDataAdapterPasswordRespondents.sqlDataAdapter);
+        }   
+        private void MenuOpenReadme_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start($"{Environment.CurrentDirectory}\\Readme.txt");
+        }
+
+        private void MenuOpenFolderLog_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuOpenCurrentLog_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuOpenSettings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuSaveCurrentRowsInExcel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuSaveAllRowsInExcel_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
