@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Websbor.Password_Respondents.Services;
 using Websbor.PasswordRespondents.DataBaseServices;
 using Websbor.PasswordRespondents.Properties;
 using Websbor.PasswordRespondents.ViewModel;
@@ -28,6 +29,7 @@ namespace Websbor.PasswordRespondents
         public MainWindow()
         {
             InitializeComponent();
+            this.Title = InfoAssembly.GetInfoAssmbly();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -37,9 +39,9 @@ namespace Websbor.PasswordRespondents
 
             Websbor.PasswordRespondents.Setting.Settings settings = new Websbor.PasswordRespondents.Setting.Settings();
             settings.ConnectionString = "Initial Catalog=WebSbor_Password_Respondents;Data Source=DESKTOP-ABQGH3T;Integrated Security=True";
-            
-           _sqlDataAdapterPasswordRespondents = new SqlDataAdapterPasswordRespondents();
-            
+
+            _sqlDataAdapterPasswordRespondents = new SqlDataAdapterPasswordRespondents();
+
             _dataBaseWork = new DataBaseWork(settings);
             _dataBaseWork.ExecDataAdapterFillToDataTable(_viewModelPasswordRespondents.DTPasswordRespondents, _sqlDataAdapterPasswordRespondents.sqlDataAdapter);
         }
@@ -48,7 +50,7 @@ namespace Websbor.PasswordRespondents
         {
 
             _dataBaseWork.ExecDataAdapterUpdateToDataTable(_viewModelPasswordRespondents.DTPasswordRespondents, _sqlDataAdapterPasswordRespondents.sqlDataAdapter);
-        }   
+        }
         private void MenuOpenReadme_Click(object sender, RoutedEventArgs e)
         {
             Process.Start($"{Environment.CurrentDirectory}\\Readme.txt");
