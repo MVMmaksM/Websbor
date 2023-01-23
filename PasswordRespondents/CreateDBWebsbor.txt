@@ -77,12 +77,15 @@ GO
 CREATE PROCEDURE [dbo].[sp_search_password]
 @name_resp NVARCHAR(50) = NULL,
 @okpo_resp NVARCHAR(15) = NULL
+@user_create NVARCHAR(20) = NULL,
+@user_update NVARCHAR(20) = NULL
 
 AS
 
 SELECT [id], [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update]
 FROM [dbo].[Password]
-WHERE (@name_resp IS NULL OR name_resp LIKE '%'+ @name_resp +'%') AND (@okpo_resp IS NULL OR okpo_resp LIKE '%' + @okpo_resp + '%');
+WHERE (@name_resp IS NULL OR name_resp LIKE '%'+ @name_resp +'%') AND (@okpo_resp IS NULL OR okpo_resp LIKE '%' + @okpo_resp + '%') AND (@user_create IS NULL OR user_create LIKE '%'+ @user_create +'%') 
+AND (@user_update IS NULL OR user_update LIKE '%'+ @user_update +'%');
 
 GO
 
