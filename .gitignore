@@ -8,3 +8,6 @@
 /.vs/MyFisrtRepository/v17/.suo
 /.vs/MyFisrtRepository/config/applicationhost.config
 /Websbor.Password_Respondents/obj/Debug/Websbor.Password_Respondents_MarkupCompile.i.cache
+/PasswordRespondents/obj/Debug/net6.0-windows/PasswordRespondents.g.resources
+/PasswordRespondents/obj/Debug/net6.0-windows/PasswordRespondents.dll
+/PasswordRespondents/bin/Debug/net6.0-windows/PasswordRespondents.dll
