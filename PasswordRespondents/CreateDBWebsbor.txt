@@ -25,9 +25,9 @@ CREATE TABLE [dbo].[Password]
 	[okpo_resp] NVARCHAR(15) NOT NULL,
 	[password_resp] NVARCHAR(15) NOT NULL,
 	[date_create] DATETIME NULL,
-	[user_create] NVARCHAR(15) NULL,
+	[user_create] NVARCHAR(20) NULL,
 	[date_update] DATETIME NULL,
-	[user_update] NVARCHAR(15) NULL
+	[user_update] NVARCHAR(20) NULL
 );
 
 GO
@@ -55,7 +55,7 @@ CREATE PROCEDURE [dbo].[sp_insert_password]
 @okpo_resp NVARCHAR(15),
 @password_resp NVARCHAR(15),
 @date_create DATETIME OUT,
-@user_create NVARCHAR(15) OUT
+@user_create NVARCHAR(20) OUT
 
 AS
 
@@ -97,7 +97,7 @@ CREATE PROCEDURE [dbo].[sp_update_password]
 @okpo_resp NVARCHAR(15),
 @password_resp NVARCHAR(15),
 @date_update DATETIME OUTPUT,
-@user_update NVARCHAR(15) OUTPUT
+@user_update NVARCHAR(20) OUTPUT
 
 AS
 
