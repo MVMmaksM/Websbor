@@ -1,0 +1,134 @@
+﻿USE master
+
+GO
+
+IF EXISTS(SELECT [name] FROM [sys].[databases] WHERE [name] = 'WebSbor_Password_Respondents')
+	DROP DATABASE [WebSbor_Password_Respondents];
+
+GO
+
+CREATE DATABASE WebSbor_Password_Respondents;
+
+GO
+
+USE WebSbor_Password_Respondents;
+
+IF OBJECT_ID('dbo.Password') IS NOT NULL
+	DROP TABLE [dbo].[Password];
+
+GO
+
+CREATE TABLE [dbo].[Password]
+(	
+	[id] INT PRIMARY KEY NONCLUSTERED IDENTITY(1,1) NOT NULL,
+	[name_resp] NVARCHAR(50) NOT NULL,
+	[okpo_resp] NVARCHAR(15) NOT NULL,
+	[password_resp] NVARCHAR(10) NOT NULL,
+	[date_create] DATETIME NOT NULL,
+	[user_create] NVARCHAR(10) NOT NULL,
+	[date_update] DATETIME NULL,
+	[user_update] NVARCHAR(10) NULL
+);
+
+GO
+
+IF OBJECT_ID('dbo.sp_select_password')IS NOT NULL
+	DROP PROCEDURE [dbo].[sp_select_password];
+
+GO
+
+CREATE PROCEDURE [dbo].[sp_select_password]
+AS
+SELECT [id], [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update]
+FROM [dbo].[Password];
+
+GO
+
+IF OBJECT_ID('dbo.sp_insert_password')IS NOT NULL
+	DROP PROCEDURE [dbo].[sp_insert_password];
+
+GO
+
+CREATE PROCEDURE [dbo].[sp_insert_password]
+@id INT OUTPUT,
+@name_resp NVARCHAR(50),
+@okpo_resp NVARCHAR(15),
+@password_resp NVARCHAR(10),
+@date_create DATETIME OUT,
+@user_create NVARCHAR(10) OUT
+
+AS
+
+SET @date_create = GETDATE();
+SELECT @user_create = [nt_user_name] FROM sys.dm_exec_sessions WHERE session_id = @@SPID;
+
+INSERT INTO [dbo].[Password] (name_resp, okpo_resp, password_resp, date_create, user_create)
+VALUES(@name_resp, @okpo_resp, @password_resp, @date_create, @user_create);
+
+SET @id = @@IDENTITY;
+
+GO
+
+IF OBJECT_ID('dbo.sp_search_password')IS NOT NULL
+	DROP PROCEDURE [dbo].[sp_search_password];
+	
+GO
+
+CREATE PROCEDURE [dbo].[sp_search_password]
+@name_resp NVARCHAR(50) = NULL,
+@okpo_resp NVARCHAR(15) = NULL
+
+AS
+
+SELECT [id], [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update]
+FROM [dbo].[Password]
+WHERE (@name_resp IS NULL OR name_resp LIKE '%'+ @name_resp +'%') AND (@okpo_resp IS NULL OR okpo_resp LIKE '%' + @okpo_resp + '%');
+
+GO
+
+IF OBJECT_ID('dbo.sp_update_password')IS NOT NULL
+	DROP PROCEDURE [dbo].[sp_update_password];
+
+GO
+
+CREATE PROCEDURE [dbo].[sp_update_password]
+@id INT,
+@name_resp NVARCHAR(15),
+@okpo_resp NVARCHAR(15),
+@password_resp NVARCHAR(10),
+@date_update DATETIME OUTPUT,
+@user_update NVARCHAR(10) OUTPUT
+
+AS
+
+SET @date_update = GETDATE();
+SELECT @user_update = [nt_user_name] FROM sys.dm_exec_sessions WHERE session_id = @@SPID
+
+UPDATE [dbo].[Password] 
+SET name_resp = @name_resp, okpo_resp = @okpo_resp, password_resp = @password_resp, date_update = @date_update, user_update = @user_update
+WHERE id = @id;
+
+GO
+
+IF OBJECT_ID('dbo.sp_delete_password')IS NOT NULL
+	DROP PROCEDURE [dbo].[sp_delete_password];
+GO
+
+CREATE PROCEDURE [dbo].[sp_delete_password]
+@id INT
+
+AS
+
+DELETE 
+FROM dbo.Password
+WHERE id = @id;
+
+GO
+
+CREATE CLUSTERED INDEX idx_okpo_resp_password
+ON [dbo].[Password](okpo_resp);
+ 
+
+
+
+

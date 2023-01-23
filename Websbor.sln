@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Websbor.PasswordRespondents", "Websbor.Password_Respondents\Websbor.PasswordRespondents.csproj", "{0EDD00A3-E42A-4B26-A600-8E60F4264418}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordRespondents", "PasswordRespondents\PasswordRespondents.csproj", "{E4D873BB-2D37-418B-BAF7-37FE23814C97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0EDD00A3-E42A-4B26-A600-8E60F4264418}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EDD00A3-E42A-4B26-A600-8E60F4264418}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EDD00A3-E42A-4B26-A600-8E60F4264418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4D873BB-2D37-418B-BAF7-37FE23814C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D873BB-2D37-418B-BAF7-37FE23814C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D873BB-2D37-418B-BAF7-37FE23814C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D873BB-2D37-418B-BAF7-37FE23814C97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
-﻿<Application x:Class="Websbor.PasswordRespondents.App"
+﻿<Application x:Class="PasswordRespondents.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Websbor.PasswordRespondents"
+             xmlns:local="clr-namespace:PasswordRespondents"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style x:Key="{x:Type DataGridCell}" TargetType="{x:Type DataGridCell}" >
@@ -41,6 +41,5 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
     </Application.Resources>
 </Application>
