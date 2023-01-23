@@ -69,12 +69,19 @@ namespace PasswordRespondents
 
         private void ButtonClearDataGrid_Click(object sender, RoutedEventArgs e)
         {
-
+            _tableRespondents.Clear();
         }
 
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                _dbWork.Search(SearchName.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void MenuItemLoad_Click(object sender, RoutedEventArgs e)

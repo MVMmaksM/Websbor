@@ -25,7 +25,7 @@
             <ColumnDefinition Width="421*"/>
             <ColumnDefinition Width="571*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dgDataPasswords" AutoGenerateColumns="False" Margin="0,24,0,118" Background="#FFE2E2E2" VerticalGridLinesBrush="#FFAAA9A9" HorizontalGridLinesBrush="#FFAAA9A9" BorderBrush="#9cdbff" LoadingRow="dgDataPasswords_LoadingRow" Grid.ColumnSpan="2" FontSize="14" FontFamily="Times New Roman" BorderThickness="0,0,0,4">
+        <DataGrid x:Name="dgDataPasswords" AutoGenerateColumns="False" Margin="0,24,0,118" Background="#ebf8ff" VerticalGridLinesBrush="#c0c1c2" HorizontalGridLinesBrush="#c0c1c2" BorderBrush="#9cdbff" LoadingRow="dgDataPasswords_LoadingRow" Grid.ColumnSpan="2" FontSize="14" FontFamily="Arial" BorderThickness="0,0,0,4">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#eb9534"/>
             </DataGrid.Resources>
@@ -40,50 +40,34 @@
                 <DataGridTextColumn Header="Примечание" Binding="{Binding Path=comment}" IsReadOnly="False" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <GroupBox x:Name="GroupBoxSearch" Header="Поиск" Margin="0,0,10,25" Height="86" VerticalAlignment="Bottom" Grid.Column="1" FontFamily="Constantia" FontWeight="Bold" Foreground="#FFFBFBFB" BorderBrush="#9cdbff">
+        <GroupBox x:Name="GroupBoxSearch" Header="Поиск" Margin="0,0,10,25" Height="86" VerticalAlignment="Bottom" Grid.Column="1" FontFamily="Arial" FontWeight="Bold" Foreground="#FFFBFBFB" BorderBrush="#9cdbff">
             <Grid x:Name="GridSearch">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="139*"/>
-                    <ColumnDefinition Width="136*"/>
-                    <ColumnDefinition Width="135*"/>
-                    <ColumnDefinition Width="139*"/>
+                    <ColumnDefinition Width="277*"/>
+                    <ColumnDefinition Width="159*"/>
+                    <ColumnDefinition Width="119*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="name" Style="{StaticResource placeHolder}" Tag="Наименование" VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="3,0" KeyDown="TxtBoxSearch_KeyDown" FontFamily="Times New Row" FontSize="14" Grid.Column="1">
+                <TextBox x:Name="SearchName" FontFamily="Arial" Style="{StaticResource placeHolder}" Tag="Наименование" VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="3,1,6,0" KeyDown="TxtBoxSearch_KeyDown" FontSize="14" Grid.Column="1" Grid.ColumnSpan="2">
                     <TextBox.Effect>
                         <DropShadowEffect Color="Black" Direction="285" ShadowDepth="2" Opacity="0.6"/>
                     </TextBox.Effect>
                 </TextBox>
-                <TextBox x:Name="okpo" Style="{StaticResource placeHolder}" Tag="ОКПО" VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" BorderBrush="#FF666666" Margin="7,0,2,0" KeyDown="TxtBoxSearch_KeyDown" FontFamily="Times New Row" FontSize="14">
+                <TextBox x:Name="SearchOkpo"  FontFamily="Arial" Style="{StaticResource placeHolder}" Tag="ОКПО" VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" BorderBrush="#FF666666" Margin="7,1,2,0" KeyDown="TxtBoxSearch_KeyDown" FontSize="14">
                     <TextBox.Effect>
                         <DropShadowEffect Color="Black" Direction="285" ShadowDepth="2" Opacity="0.6"/>
                     </TextBox.Effect>
                 </TextBox>
-                <TextBox x:Name="usercreate" Style="{StaticResource placeHolder}" Tag="Пользователь создавший запись"  VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" BorderBrush="#FF666666" Margin="3,29,3,0" KeyDown="TxtBoxSearch_KeyDown" FontFamily="Times New Row" FontSize="14" Grid.Column="1">
+                <TextBox x:Name="SeacrhUserCreate" FontFamily="Arial" Style="{StaticResource placeHolder}" Tag="Пользователь создавший запись"  VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" BorderBrush="#FF666666" Margin="3,32,3,0" KeyDown="TxtBoxSearch_KeyDown" FontSize="14" Grid.Column="1">
                     <TextBox.Effect>
                         <DropShadowEffect Color="Black" Direction="285" ShadowDepth="2" Opacity="0.6"/>
                     </TextBox.Effect>
                 </TextBox>
-                <TextBox x:Name="datecreate" Style="{StaticResource placeHolder}"  Tag="Дата создания" VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" BorderBrush="#FF666666" Margin="3,0,6,0" KeyDown="TxtBoxSearch_KeyDown" FontFamily="Times New Row" FontSize="14" Grid.Column="3">
+                <TextBox x:Name="SearchUserUpdate" FontFamily="Arial" Style="{StaticResource placeHolder}" Tag="Пользователь изменивший" VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" BorderBrush="#FF666666" Margin="7,32,2,0" KeyDown="TxtBoxSearch_KeyDown" FontSize="14">
                     <TextBox.Effect>
                         <DropShadowEffect Color="Black" Direction="285" ShadowDepth="2" Opacity="0.6"/>
                     </TextBox.Effect>
                 </TextBox>
-                <TextBox x:Name="dateupdate" Style="{StaticResource placeHolder}" Tag="Дата изменения" VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" BorderBrush="#FF666666" Margin="4,0,2,0" KeyDown="TxtBoxSearch_KeyDown" FontFamily="Times New Row" FontSize="14" Grid.Column="2">
-                    <TextBox.Effect>
-                        <DropShadowEffect Color="Black" Direction="285" ShadowDepth="2" Opacity="0.6"/>
-                    </TextBox.Effect>
-                </TextBox>
-                <TextBox x:Name="userupdate" Style="{StaticResource placeHolder}" Tag="Пользователь изменивший" VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" BorderBrush="#FF666666" Margin="7,29,2,0" KeyDown="TxtBoxSearch_KeyDown" FontFamily="Times New Row" FontSize="14">
-                    <TextBox.Effect>
-                        <DropShadowEffect Color="Black" Direction="285" ShadowDepth="2" Opacity="0.6"/>
-                    </TextBox.Effect>
-                </TextBox>
-                <TextBox x:Name="comment" Style="{StaticResource placeHolder}" Tag="Примечание" VerticalContentAlignment="Center" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" BorderBrush="#FF666666" Margin="4,29,2,0" KeyDown="TxtBoxSearch_KeyDown" FontFamily="Times New Row" FontSize="14" Grid.Column="2">
-                    <TextBox.Effect>
-                        <DropShadowEffect Color="Black" Direction="285" ShadowDepth="2" Opacity="0.6"/>
-                    </TextBox.Effect>
-                </TextBox>
-                <Button x:Name="ButtonSearch" Content="Найти" Click="ButtonSearch_Click" Margin="3,29,6,0" Height="25" VerticalAlignment="Top" Grid.Column="3" Foreground="WhiteSmoke" BorderBrush="#086499" Background="#48b9fa">
+                <Button x:Name="ButtonSearch" FontFamily="Arial" Content="Найти" Click="ButtonSearch_Click" Margin="2,32,6,0" Height="25" VerticalAlignment="Top" Grid.Column="2" Foreground="WhiteSmoke" BorderBrush="#086499" Background="#48b9fa">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -95,38 +79,38 @@
                 </Button>
             </Grid>
         </GroupBox>
-        <Menu Height="24" VerticalAlignment="Top" Background="#086499" FontFamily="Constantia" RenderTransformOrigin="0.509,0.458" Grid.ColumnSpan="2" Foreground="White">
-            <MenuItem x:Name="MenuFile" Header="Файл" Height="24" Width="42" BorderThickness="1,1,1,1" >
+        <Menu Height="24" VerticalAlignment="Top" Background="#086499" FontFamily="Arial" RenderTransformOrigin="0.509,0.458" Grid.ColumnSpan="2" Foreground="White">
+            <MenuItem x:Name="MenuFile" Header="Файл" Height="23" Width="42" BorderThickness="1,1,1,1" >
                 <MenuItem Header="Загрузить записи" Click="MenuItemLoad_Click"/>
                 <MenuItem Header="Загрузить каталог web-сбора" Click="MenuItemLoadWebSbor_Click"/>
                 <MenuItem Header="Сохранить все записи в файл" Click="MenuItemSaveAllRows_Click"/>
                 <MenuItem Header="Сохранить текущие записи в файл" Click="MenuItemSaveCurrentRows_Click" IsEnabled="True"/>
                 <MenuItem Header="Шаблон загрузки из Excel" Click="MenuItemShemaEcxel_Click"/>
             </MenuItem>
-            <MenuItem x:Name="MenuDB"  Header="БД" BorderThickness="1,1,1,1">
+            <MenuItem x:Name="MenuDB"  Header="БД" BorderThickness="1,1,1,1" Height="22">
                 <MenuItem Header="Сделать копию" IsEnabled="False"/>
                 <MenuItem Header="Восстановить копию" IsEnabled="False"/>
                 <MenuItem Header="Очистить таблицу"/>
             </MenuItem>
-            <MenuItem Header="Протокол" BorderThickness="1,1,1,1" >
+            <MenuItem Header="Протокол" BorderThickness="1,1,1,1" Height="24" >
                 <MenuItem Header="Открыть" Click="MenuItemOpenProtocol_Click"/>
                 <MenuItem Header="Показать в папке" Click="MenuItemOpenDirectoryProtocol_Click"/>
             </MenuItem>
-            <MenuItem Header="Логи" BorderThickness="1,1,1,1">
+            <MenuItem Header="Логи" BorderThickness="1,1,1,1" VerticalAlignment="Center" Height="24">
                 <MenuItem Header="Открыть текущий log-файл" Click="MenuItemOpenLog_Click"/>
                 <MenuItem Header="Откыть папку для log-файлов" Click="MenuItemOpenDirectoryLog_Click"/>
                 <MenuItem Header="Удалить все log-файлы" Click="MenuItemDeleteAllLog_Click"/>
             </MenuItem>
-            <MenuItem Header="Настройки" Click="MenuItemOpenSettings_Click" BorderThickness="1,1,1,1">
+            <MenuItem Header="Настройки" VerticalAlignment="Top" Height="20">
             </MenuItem>
         </Menu>
-        <GroupBox x:Name="GroupBoxRedact" Header="Редактирование" Margin="10,0,3,25" Height="86" VerticalAlignment="Bottom" FontFamily="Constantia" UseLayoutRounding="True" Foreground="#FFFDFDFD" BorderBrush="#9cdbff" FontWeight="Bold">
+        <GroupBox x:Name="GroupBoxRedact" Header="Редактирование" Margin="10,0,3,25" Height="86" VerticalAlignment="Bottom" FontFamily="Arial" UseLayoutRounding="True" Foreground="#FFFDFDFD" BorderBrush="#9cdbff" FontWeight="Bold">
             <Grid Margin="0,0,-2,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="141*"/>
                     <ColumnDefinition Width="140*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="ButtonUpdate" Content="Обновить" VerticalAlignment="Top"  Click="ButtonUpdate_Click" Height="25" Background="#48b9fa" Margin="7,1,7,0" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
+                <Button x:Name="ButtonUpdate" Content="Обновить" VerticalAlignment="Top"  Click="ButtonUpdate_Click" Height="25" Background="#48b9fa" Margin="7,1,7,0" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold" FontFamily="Arial">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -136,7 +120,7 @@
                         <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" Opacity="0.6"/>
                     </Button.Effect>
                 </Button>
-                <Button x:Name="ButtonShowAllData" Content="Показать все записи" Click="ButtonShowAllData_Click" Background="#48b9fa" Margin="7,1,7,0" Grid.Column="1" Height="25" VerticalAlignment="Top" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
+                <Button x:Name="ButtonShowAllData" FontFamily="Arial" Content="Показать все записи" Click="ButtonShowAllData_Click" Background="#48b9fa" Margin="7,1,7,0" Grid.Column="1" Height="25" VerticalAlignment="Top" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -146,7 +130,7 @@
                         <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" Opacity="0.6"/>
                     </Button.Effect>
                 </Button>
-                <Button x:Name="ButtonDeleteRow" Content="Удалить" VerticalAlignment="Top" Click="ButtonDeleteRow_Click" Height="25" Background="#48b9fa" Margin="7,32,7,0" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
+                <Button x:Name="ButtonDeleteRow" FontFamily="Arial" Content="Удалить" VerticalAlignment="Top" Click="ButtonDeleteRow_Click" Height="25" Background="#48b9fa" Margin="7,32,7,0" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -156,7 +140,7 @@
                         <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" Opacity="0.6"/>
                     </Button.Effect>
                 </Button>
-                <Button x:Name="ButtonClearDataGrid" Content="Очистить список" VerticalAlignment="Top" Click="ButtonClearDataGrid_Click" Height="25" Background="#48b9fa" Margin="7,32,7,0" Grid.Column="1" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
+                <Button x:Name="ButtonClearDataGrid" FontFamily="Arial" Content="Очистить список" VerticalAlignment="Top" Click="ButtonClearDataGrid_Click" Height="25" Background="#48b9fa" Margin="7,32,7,0" Grid.Column="1" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>

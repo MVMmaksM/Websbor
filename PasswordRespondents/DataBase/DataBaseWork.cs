@@ -48,5 +48,23 @@ namespace PasswordRespondents.DataBase
                 _sqlDataAdapter.Update(DataTableWork);
             }
         }
+
+        public void Search(string nameResp) 
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand sqlCommandSearch = new SqlCommand("sp_search_password", sqlConnection);
+                sqlCommandSearch.CommandType = CommandType.StoredProcedure;
+                sqlCommandSearch.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 50, "ОАО") { Direction = ParameterDirection.Input });
+                //sqlCommandSearch.Parameters.Add(new SqlParameter("@okpo_resp", SqlDbType.NVarChar, 15, okpoResp) { Direction = ParameterDirection.Input });
+                //sqlCommandSearch.Parameters.Add(new SqlParameter("@user_create", SqlDbType.NVarChar, 20, userCreate) { Direction = ParameterDirection.Input });
+                //sqlCommandSearch.Parameters.Add(new SqlParameter("@user_update", SqlDbType.NVarChar, 20, userUpdate) { Direction = ParameterDirection.Input });               
+                //_sqlDataAdapter.SelectCommand = sqlCommandSearch;
+                //_sqlDataAdapter.Fill(DataTableWork);
+
+                SqlDataAdapter sqlDASearch = new SqlDataAdapter(sqlCommandSearch);
+                sqlDASearch.Fill(DataTableWork);
+            }
+        }
     }
 }
