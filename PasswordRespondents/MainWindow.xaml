@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordRespondents"
         mc:Ignorable="d"
-         Title="Учетки респондентов" Height="650" Width="1000" MinWidth="620" MinHeight="420" Background="#FFAAA9A9" Topmost="False" WindowStartupLocation="CenterScreen" Closed="Window_Closed" ResizeMode="CanResize" Loaded="Websbor_PasswordRespondents_Window_Loded">
+         Title="Учетки респондентов" Height="650" Width="1000" MinWidth="620" MinHeight="420" Background="#FFAAA9A9" Topmost="False" WindowStartupLocation="CenterScreen" Closed="MainWindow_Closed" ResizeMode="CanResize" Loaded="MainWindow_Loaded">
     <Grid UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="421*"/>
@@ -85,24 +85,21 @@
             <MenuItem x:Name="MenuFile" Header="Файл" Height="24" Width="42">
                 <MenuItem Header="Загрузить записи" Click="MenuItemLoad_Click"/>
                 <MenuItem Header="Загрузить каталог web-сбора" Click="MenuItemLoadWebSbor_Click"/>
-                <MenuItem Header="Сохранить все записи в файл" Click="MenuItemSaveAllData_Click"/>
-                <MenuItem Header="Сохранить текущие записи в файл" Click="MenuItemSaveCurrentData_Click" IsEnabled="True"/>
+                <MenuItem Header="Сохранить все записи в файл" Click="MenuItemSaveAllRows_Click"/>
+                <MenuItem Header="Сохранить текущие записи в файл" Click="MenuItemSaveCurrentRows_Click" IsEnabled="True"/>
                 <MenuItem Header="Шаблон загрузки из Excel" Click="MenuItemShemaEcxel_Click"/>
             </MenuItem>
             <MenuItem x:Name="MenuDB"  Header="БД">
                 <MenuItem Header="Сделать копию" IsEnabled="False"/>
-                <MenuItem Header="Восстановить копию" Click="MenuItem_Click_1" IsEnabled="False"/>
-                <MenuItem Header="Очистить таблицу" Click="MenuItem_Click_2"/>
-            </MenuItem>
-            <MenuItem x:Name="MenuAdmUser"  Header="Администрирование">
-                <MenuItem Header="Добавить пользователя" Click="MenuItemAddUser_Click"/>
-            </MenuItem>
+                <MenuItem Header="Восстановить копию" IsEnabled="False"/>
+                <MenuItem Header="Очистить таблицу"/>
+            </MenuItem>           
             <MenuItem Header="Протокол">
                 <MenuItem Header="Открыть" Click="MenuItemOpenProtocol_Click"/>
                 <MenuItem Header="Показать в папке" Click="MenuItemOpenDirectoryProtocol_Click"/>
             </MenuItem>
             <MenuItem Header="Логи">
-                <MenuItem Header="Открыть текущий log-файл" Click="MenuItemOPenLog_Click"/>
+                <MenuItem Header="Открыть текущий log-файл" Click="MenuItemOpenLog_Click"/>
                 <MenuItem Header="Откыть папку для log-файлов" Click="MenuItemOpenDirectoryLog_Click"/>
                 <MenuItem Header="Удалить все log-файлы" Click="MenuItemDeleteAllLog_Click"/>
             </MenuItem>
@@ -115,7 +112,7 @@
                     <ColumnDefinition Width="141*"/>
                     <ColumnDefinition Width="140*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="ButtonUpdate" Content="Сохранить" VerticalAlignment="Top"  Click="ButtonUpdate_Click" Height="25" Background="#FFF0F0F0" Margin="7,1,7,0">
+                <Button x:Name="ButtonUpdate" Content="Обновить" VerticalAlignment="Top"  Click="ButtonUpdate_Click" Height="25" Background="#FFF0F0F0" Margin="7,1,7,0">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -125,7 +122,7 @@
                         <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" Opacity="0.6"/>
                     </Button.Effect>
                 </Button>
-                <Button x:Name="ButtonGetAllData" Content="Показать все записи" Click="ButtonGetAllData_Click" Background="#FFF0F0F0" Margin="7,1,7,0" Grid.Column="1" Height="25" VerticalAlignment="Top">
+                <Button x:Name="ButtonShowAllData" Content="Показать все записи" Click="ButtonShowAllData_Click" Background="#FFF0F0F0" Margin="7,1,7,0" Grid.Column="1" Height="25" VerticalAlignment="Top">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -135,7 +132,7 @@
                         <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" Opacity="0.6"/>
                     </Button.Effect>
                 </Button>
-                <Button x:Name="ButtonDelete" Content="Удалить" VerticalAlignment="Top" Click="ButtonDelete_Click" Height="25" Background="#FFF0F0F0" Margin="7,32,7,0">
+                <Button x:Name="ButtonDeleteRow" Content="Удалить" VerticalAlignment="Top" Click="ButtonDeleteRow_Click" Height="25" Background="#FFF0F0F0" Margin="7,32,7,0">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -145,7 +142,7 @@
                         <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" Opacity="0.6"/>
                     </Button.Effect>
                 </Button>
-                <Button x:Name="ButtonClearDataGrid" Content="Очистить список" VerticalAlignment="Top" Click="ButtonClearDatagrid_Click" Height="25" Background="#FFF0F0F0" Margin="7,32,7,0" Grid.Column="1">
+                <Button x:Name="ButtonClearDataGrid" Content="Очистить список" VerticalAlignment="Top" Click="ButtonClearDataGrid_Click" Height="25" Background="#FFF0F0F0" Margin="7,32,7,0" Grid.Column="1">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>

@@ -10,7 +10,7 @@ namespace PasswordRespondents.DataBase
 {
     internal class DataAdapterRespondent
     {
-        public SqlDataAdapter CreateSqlDataAdapterRespondent()
+        public SqlDataAdapter GetSqlDataAdapterRespondent()
         {
             var sqlDataAdapter = new SqlDataAdapter();
             sqlDataAdapter.SelectCommand = CreateSqlCommandSelect();
