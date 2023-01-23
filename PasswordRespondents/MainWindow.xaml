@@ -5,13 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordRespondents"
         mc:Ignorable="d"
-         Title="Учетки респондентов" Height="650" Width="1000" MinWidth="620" MinHeight="420" Background="#FFAAA9A9" Topmost="False" WindowStartupLocation="CenterScreen" Closed="MainWindow_Closed" ResizeMode="CanResize" Loaded="MainWindow_Loaded">
+         Title="Учетки респондентов" Height="650" Width="1000" MinWidth="620" MinHeight="420" Background="#086499" Topmost="False" WindowStartupLocation="CenterScreen" Closed="MainWindow_Closed" ResizeMode="CanResize" Loaded="MainWindow_Loaded">
+    <Window.Resources>
+        <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
+            <Border Name="Border" >
+                <Grid>
+                    <ContentPresenter Margin="6,3,6,3" ContentSource="Header" RecognizesAccessKey="True" />
+                    <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
+                        <Border Name="SubmenuBorder" SnapsToDevicePixels="True" Background="#086499">
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle"/>
+                        </Border>
+                    </Popup>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="421*"/>
             <ColumnDefinition Width="571*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dgDataPasswords" AutoGenerateColumns="False" Margin="0,24,0,118" Background="#FFE2E2E2" VerticalGridLinesBrush="#FFAAA9A9" HorizontalGridLinesBrush="#FFAAA9A9" BorderBrush="#FF595954" LoadingRow="dgDataPasswords_LoadingRow" Grid.ColumnSpan="2" FontSize="14" FontFamily="Times New Roman">
+        <DataGrid x:Name="dgDataPasswords" AutoGenerateColumns="False" Margin="0,24,0,118" Background="#FFE2E2E2" VerticalGridLinesBrush="#FFAAA9A9" HorizontalGridLinesBrush="#FFAAA9A9" BorderBrush="#9cdbff" LoadingRow="dgDataPasswords_LoadingRow" Grid.ColumnSpan="2" FontSize="14" FontFamily="Times New Roman" BorderThickness="0,0,0,4">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#eb9534"/>
             </DataGrid.Resources>
@@ -26,7 +40,7 @@
                 <DataGridTextColumn Header="Примечание" Binding="{Binding Path=comment}" IsReadOnly="False" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <GroupBox x:Name="GroupBoxSearch" Header="Поиск" Margin="0,0,10,25" Height="86" VerticalAlignment="Bottom" Grid.Column="1" FontFamily="Constantia">
+        <GroupBox x:Name="GroupBoxSearch" Header="Поиск" Margin="0,0,10,25" Height="86" VerticalAlignment="Bottom" Grid.Column="1" FontFamily="Constantia" FontWeight="Bold" Foreground="#FFFBFBFB" BorderBrush="#9cdbff">
             <Grid x:Name="GridSearch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="139*"/>
@@ -69,7 +83,7 @@
                         <DropShadowEffect Color="Black" Direction="285" ShadowDepth="2" Opacity="0.6"/>
                     </TextBox.Effect>
                 </TextBox>
-                <Button x:Name="ButtonSearch" Content="Найти" Click="ButtonSearch_Click"  Background="#FFF0F0F0" Margin="3,29,6,0" Height="25" VerticalAlignment="Top" Grid.Column="3">
+                <Button x:Name="ButtonSearch" Content="Найти" Click="ButtonSearch_Click" Margin="3,29,6,0" Height="25" VerticalAlignment="Top" Grid.Column="3" Foreground="WhiteSmoke" BorderBrush="#086499" Background="#48b9fa">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -81,38 +95,38 @@
                 </Button>
             </Grid>
         </GroupBox>
-        <Menu Height="24" VerticalAlignment="Top" Background="#FFF0F0F0" FontFamily="Constantia" RenderTransformOrigin="0.509,0.458" Grid.ColumnSpan="2">
-            <MenuItem x:Name="MenuFile" Header="Файл" Height="24" Width="42">
+        <Menu Height="24" VerticalAlignment="Top" Background="#086499" FontFamily="Constantia" RenderTransformOrigin="0.509,0.458" Grid.ColumnSpan="2" Foreground="White">
+            <MenuItem x:Name="MenuFile" Header="Файл" Height="24" Width="42" BorderThickness="1,1,1,1" >
                 <MenuItem Header="Загрузить записи" Click="MenuItemLoad_Click"/>
                 <MenuItem Header="Загрузить каталог web-сбора" Click="MenuItemLoadWebSbor_Click"/>
                 <MenuItem Header="Сохранить все записи в файл" Click="MenuItemSaveAllRows_Click"/>
                 <MenuItem Header="Сохранить текущие записи в файл" Click="MenuItemSaveCurrentRows_Click" IsEnabled="True"/>
                 <MenuItem Header="Шаблон загрузки из Excel" Click="MenuItemShemaEcxel_Click"/>
             </MenuItem>
-            <MenuItem x:Name="MenuDB"  Header="БД">
+            <MenuItem x:Name="MenuDB"  Header="БД" BorderThickness="1,1,1,1">
                 <MenuItem Header="Сделать копию" IsEnabled="False"/>
                 <MenuItem Header="Восстановить копию" IsEnabled="False"/>
                 <MenuItem Header="Очистить таблицу"/>
-            </MenuItem>           
-            <MenuItem Header="Протокол">
+            </MenuItem>
+            <MenuItem Header="Протокол" BorderThickness="1,1,1,1" >
                 <MenuItem Header="Открыть" Click="MenuItemOpenProtocol_Click"/>
                 <MenuItem Header="Показать в папке" Click="MenuItemOpenDirectoryProtocol_Click"/>
             </MenuItem>
-            <MenuItem Header="Логи">
+            <MenuItem Header="Логи" BorderThickness="1,1,1,1">
                 <MenuItem Header="Открыть текущий log-файл" Click="MenuItemOpenLog_Click"/>
                 <MenuItem Header="Откыть папку для log-файлов" Click="MenuItemOpenDirectoryLog_Click"/>
                 <MenuItem Header="Удалить все log-файлы" Click="MenuItemDeleteAllLog_Click"/>
             </MenuItem>
-            <MenuItem Header="Настройки" Click="MenuItemOpenSettings_Click">
+            <MenuItem Header="Настройки" Click="MenuItemOpenSettings_Click" BorderThickness="1,1,1,1">
             </MenuItem>
         </Menu>
-        <GroupBox x:Name="GroupBoxRedact" Header="Редактирование" Margin="10,0,3,25" Height="86" VerticalAlignment="Bottom" FontFamily="Constantia" UseLayoutRounding="True">
+        <GroupBox x:Name="GroupBoxRedact" Header="Редактирование" Margin="10,0,3,25" Height="86" VerticalAlignment="Bottom" FontFamily="Constantia" UseLayoutRounding="True" Foreground="#FFFDFDFD" BorderBrush="#9cdbff" FontWeight="Bold">
             <Grid Margin="0,0,-2,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="141*"/>
                     <ColumnDefinition Width="140*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="ButtonUpdate" Content="Обновить" VerticalAlignment="Top"  Click="ButtonUpdate_Click" Height="25" Background="#FFF0F0F0" Margin="7,1,7,0">
+                <Button x:Name="ButtonUpdate" Content="Обновить" VerticalAlignment="Top"  Click="ButtonUpdate_Click" Height="25" Background="#48b9fa" Margin="7,1,7,0" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -122,7 +136,7 @@
                         <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" Opacity="0.6"/>
                     </Button.Effect>
                 </Button>
-                <Button x:Name="ButtonShowAllData" Content="Показать все записи" Click="ButtonShowAllData_Click" Background="#FFF0F0F0" Margin="7,1,7,0" Grid.Column="1" Height="25" VerticalAlignment="Top">
+                <Button x:Name="ButtonShowAllData" Content="Показать все записи" Click="ButtonShowAllData_Click" Background="#48b9fa" Margin="7,1,7,0" Grid.Column="1" Height="25" VerticalAlignment="Top" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -132,7 +146,7 @@
                         <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" Opacity="0.6"/>
                     </Button.Effect>
                 </Button>
-                <Button x:Name="ButtonDeleteRow" Content="Удалить" VerticalAlignment="Top" Click="ButtonDeleteRow_Click" Height="25" Background="#FFF0F0F0" Margin="7,32,7,0">
+                <Button x:Name="ButtonDeleteRow" Content="Удалить" VerticalAlignment="Top" Click="ButtonDeleteRow_Click" Height="25" Background="#48b9fa" Margin="7,32,7,0" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -142,7 +156,7 @@
                         <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" Opacity="0.6"/>
                     </Button.Effect>
                 </Button>
-                <Button x:Name="ButtonClearDataGrid" Content="Очистить список" VerticalAlignment="Top" Click="ButtonClearDataGrid_Click" Height="25" Background="#FFF0F0F0" Margin="7,32,7,0" Grid.Column="1">
+                <Button x:Name="ButtonClearDataGrid" Content="Очистить список" VerticalAlignment="Top" Click="ButtonClearDataGrid_Click" Height="25" Background="#48b9fa" Margin="7,32,7,0" Grid.Column="1" Foreground="WhiteSmoke" BorderBrush="#086499" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="2"/>
@@ -154,8 +168,11 @@
                 </Button>
             </Grid>
         </GroupBox>
-        <StatusBar Height="20" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
-        </StatusBar>
+        <Border BorderThickness="0,2,0,0" Background="#086499" BorderBrush="#48b9fa" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Bottom">
+            <StackPanel Margin="0,611,-576,0">
+                <StatusBar Height="23"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
     

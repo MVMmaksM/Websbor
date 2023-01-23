@@ -53,9 +53,9 @@ CREATE PROCEDURE [dbo].[sp_insert_password]
 @id INT OUTPUT,
 @name_resp NVARCHAR(50),
 @okpo_resp NVARCHAR(15),
-@password_resp NVARCHAR(10),
+@password_resp NVARCHAR(15),
 @date_create DATETIME OUT,
-@user_create NVARCHAR(10) OUT
+@user_create NVARCHAR(15) OUT
 
 AS
 
@@ -95,9 +95,9 @@ CREATE PROCEDURE [dbo].[sp_update_password]
 @id INT,
 @name_resp NVARCHAR(15),
 @okpo_resp NVARCHAR(15),
-@password_resp NVARCHAR(10),
+@password_resp NVARCHAR(15),
 @date_update DATETIME OUTPUT,
-@user_update NVARCHAR(10) OUTPUT
+@user_update NVARCHAR(15) OUTPUT
 
 AS
 
