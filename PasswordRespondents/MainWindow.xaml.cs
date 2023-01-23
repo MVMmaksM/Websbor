@@ -51,7 +51,7 @@ namespace PasswordRespondents
 
         private void ButtonShowAllData_Click(object sender, RoutedEventArgs e)
         {
-
+            _dbWork.FillToDataTable();
         }
         private void ButtonDeleteRow_Click(object sender, RoutedEventArgs e)
         {

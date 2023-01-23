@@ -2,16 +2,16 @@
 
 GO
 
-IF EXISTS(SELECT [name] FROM [sys].[databases] WHERE [name] = 'WebSbor_Password_Respondents')
-	DROP DATABASE [WebSbor_Password_Respondents];
+IF EXISTS(SELECT [name] FROM [sys].[databases] WHERE [name] = 'WebSbor_Password')
+	DROP DATABASE [WebSbor_Password];
 
 GO
 
-CREATE DATABASE WebSbor_Password_Respondents;
+CREATE DATABASE WebSbor_Password;
 
 GO
 
-USE WebSbor_Password_Respondents;
+USE WebSbor_Password;
 
 IF OBJECT_ID('dbo.Password') IS NOT NULL
 	DROP TABLE [dbo].[Password];
