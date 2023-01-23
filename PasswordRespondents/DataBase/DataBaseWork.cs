@@ -20,12 +20,32 @@ namespace PasswordRespondents.DataBase
             DataTableWork = dataTable;
             _sqlDataAdapter = sqlDataAdapter;
         }
+
+        public void GetShemaTable() 
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+            {
+                _sqlDataAdapter.SelectCommand.Connection = sqlConnection;
+                _sqlDataAdapter.FillSchema(DataTableWork, SchemaType.Source);
+            }
+        }
         public void FillToDataTable()
         {
             using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
                 _sqlDataAdapter.SelectCommand.Connection = sqlConnection;
                 _sqlDataAdapter.Fill(DataTableWork);
+            }
+        }
+
+        public void UpdateDataTable() 
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+            {
+                _sqlDataAdapter.InsertCommand.Connection = sqlConnection;
+                _sqlDataAdapter.UpdateCommand.Connection = sqlConnection;
+                _sqlDataAdapter.DeleteCommand.Connection = sqlConnection;   
+                _sqlDataAdapter.Update(DataTableWork);
             }
         }
     }

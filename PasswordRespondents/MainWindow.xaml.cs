@@ -24,14 +24,15 @@ namespace PasswordRespondents
         private DataTable _tableRespondents;
         private DataBaseWork _dbWork;
         private SqlDataAdapter _dataAdapterRespondent;
-        private string _connectionString = "Data Source=p45-DB08;Initial Catalog=WebSbor_PasswordRespondents;Integrated Security=SSPI";
+        private string _connectionString = "Data Source=p45-DB08;Initial Catalog=WebSbor_Password;Integrated Security=SSPI";
         public MainWindow()
         {
             InitializeComponent();
             _tableRespondents = new Respondent().GetDataTableRespondent();
             _dataAdapterRespondent = new DataAdapterRespondent().GetSqlDataAdapterRespondent();
-            dgDataPasswords.ItemsSource = _tableRespondents.DefaultView;
             _dbWork = new DataBaseWork(_connectionString, _tableRespondents, _dataAdapterRespondent);
+            _dbWork.GetShemaTable();
+            dgDataPasswords.ItemsSource = _tableRespondents.DefaultView;
         }
        
         private void MainWindow_Closed(object sender, EventArgs e)
@@ -47,6 +48,14 @@ namespace PasswordRespondents
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
 
+            try
+            {
+                _dbWork.UpdateDataTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ButtonShowAllData_Click(object sender, RoutedEventArgs e)

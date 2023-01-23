@@ -23,11 +23,11 @@ CREATE TABLE [dbo].[Password]
 	[id] INT PRIMARY KEY NONCLUSTERED IDENTITY(1,1) NOT NULL,
 	[name_resp] NVARCHAR(50) NOT NULL,
 	[okpo_resp] NVARCHAR(15) NOT NULL,
-	[password_resp] NVARCHAR(10) NOT NULL,
-	[date_create] DATETIME NOT NULL,
-	[user_create] NVARCHAR(10) NOT NULL,
+	[password_resp] NVARCHAR(15) NOT NULL,
+	[date_create] DATETIME NULL,
+	[user_create] NVARCHAR(15) NULL,
 	[date_update] DATETIME NULL,
-	[user_update] NVARCHAR(10) NULL
+	[user_update] NVARCHAR(15) NULL
 );
 
 GO

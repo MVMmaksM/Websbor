@@ -17,6 +17,7 @@ namespace PasswordRespondents.Model
         private DataColumn _userCreate;
         private DataColumn _dateUpdate;
         private DataColumn _userUpdate;
+        private DataColumn _comment;
         private DataColumn[] _columns;
         public Respondent()
         {
@@ -28,9 +29,9 @@ namespace PasswordRespondents.Model
             _userCreate = new DataColumn("user_create", typeof(string));
             _dateUpdate = new DataColumn("date_update", typeof(DateTime));
             _userUpdate = new DataColumn("user_update", typeof(string));
-
-            _columns = new DataColumn[8] { _id, _nameResp,_okpoResp, _passwordResp, _dateCreate, _userCreate,
-            _dateUpdate, _userUpdate};
+            _comment = new DataColumn("comment", typeof(string));
+            _columns = new DataColumn[9] { _id, _nameResp,_okpoResp, _passwordResp, _dateCreate, _userCreate,
+            _dateUpdate, _userUpdate, _comment};
         }
 
         public DataTable GetDataTableRespondent()

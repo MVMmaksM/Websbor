@@ -16,13 +16,13 @@
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#eb9534"/>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=name}" Width="250" />
-                <DataGridTextColumn Header="ОКПО" Binding="{Binding Path=okpo}" Width="105"/>
-                <DataGridTextColumn Header="Пароль" Binding="{Binding Path=password}" Width="120"/>
-                <DataGridTextColumn Header="Дата создания" Binding="{Binding Path=datecreate, StringFormat=\{0:dd.MM.yyyy HH:mm\}}"  Width="105" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Пользователь создавший запись" Binding="{Binding Path=usercreate}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Дата изменения" Binding="{Binding Path=dateupdate, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Пользователь изменивший запись" Binding="{Binding Path=userupdate}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=name_resp}" Width="250" />
+                <DataGridTextColumn Header="ОКПО" Binding="{Binding Path=okpo_resp}" Width="105"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Path=password_resp}" Width="120"/>
+                <DataGridTextColumn Header="Дата создания" Binding="{Binding Path=date_create, StringFormat=\{0:dd.MM.yyyy HH:mm\}}"  Width="105" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Пользователь создавший запись" Binding="{Binding Path=user_create}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Дата изменения" Binding="{Binding Path=date_update, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Пользователь изменивший запись" Binding="{Binding Path=user_update}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Примечание" Binding="{Binding Path=comment}" IsReadOnly="False" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
