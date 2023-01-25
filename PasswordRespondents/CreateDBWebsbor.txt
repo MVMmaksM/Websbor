@@ -160,7 +160,3 @@ GO
 CREATE CLUSTERED INDEX idx_okpo_resp_password
 ON [dbo].[Password](okpo_resp);
  
-
-
-
-
