@@ -124,5 +124,27 @@ namespace PasswordRespondents.DataBase
 
             return dataTable;
         }
+
+        public void LoadFromDataTable(DataTable dataTableFromExcel) 
+        {
+            if (dataTableFromExcel is not null)
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand sqlCommandInsert = new SqlCommand("sp_", sqlConnection);
+                    sqlCommandInsert.CommandType = CommandType.StoredProcedure;
+                    sqlCommandInsert.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 0, "id") { Direction = ParameterDirection.Output });
+                    sqlCommandInsert.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 50, "name_resp") { Direction = ParameterDirection.Input });
+                    sqlCommandInsert.Parameters.Add(new SqlParameter("@okpo_resp", SqlDbType.NVarChar, 15, "okpo_Resp") { Direction = ParameterDirection.Input });
+                    sqlCommandInsert.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 15, "password_resp") { Direction = ParameterDirection.Input });
+                    sqlCommandInsert.Parameters.Add(new SqlParameter("@date_create", SqlDbType.DateTime, 0, "date_create") { Direction = ParameterDirection.Output });
+                    sqlCommandInsert.Parameters.Add(new SqlParameter("@user_create", SqlDbType.NVarChar, 20, "user_create") { Direction = ParameterDirection.Output });
+
+                    DataTableWork.Clear();
+
+                    new SqlDataAdapter(sqlCommandSearch).Fill(DataTableWork);
+                }
+            }
+        }
     }
 }

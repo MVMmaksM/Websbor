@@ -27,7 +27,8 @@ CREATE TABLE [dbo].[Password]
 	[date_create] DATETIME NULL,
 	[user_create] NVARCHAR(20) NULL,
 	[date_update] DATETIME NULL,
-	[user_update] NVARCHAR(20) NULL
+	[user_update] NVARCHAR(20) NULL,
+	[comment] NVARCHAR(MAX) NULL
 );
 
 GO
@@ -55,15 +56,16 @@ CREATE PROCEDURE [dbo].[sp_insert_password]
 @okpo_resp NVARCHAR(15),
 @password_resp NVARCHAR(15),
 @date_create DATETIME OUT,
-@user_create NVARCHAR(20) OUT
+@user_create NVARCHAR(20) OUT,
+@comment NVARCHAR(MAX)
 
 AS
 
 SET @date_create = GETDATE();
 SELECT @user_create = [nt_user_name] FROM sys.dm_exec_sessions WHERE session_id = @@SPID;
 
-INSERT INTO [dbo].[Password] (name_resp, okpo_resp, password_resp, date_create, user_create)
-VALUES(@name_resp, @okpo_resp, @password_resp, @date_create, @user_create);
+INSERT INTO [dbo].[Password] (name_resp, okpo_resp, password_resp, date_create, user_create, comment)
+VALUES(@name_resp, @okpo_resp, @password_resp, @date_create, @user_create, @comment);
 
 SET @id = @@IDENTITY;
 
@@ -80,7 +82,7 @@ CREATE PROCEDURE [dbo].[sp_search_password_okpo_name]
 
 AS
 
-SELECT [id], [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update]
+SELECT [id], [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update], [comment]
 FROM [dbo].[Password]
 WHERE [name_resp] LIKE '%'+ @name_resp +'%' AND  [okpo_resp] LIKE '%'+ @okpo_resp +'%'
 
@@ -96,7 +98,7 @@ CREATE PROCEDURE [dbo].[sp_search_password_okpo]
 
 AS
 
-SELECT [id], [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update]
+SELECT [id], [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update], [comment]
 FROM [dbo].[Password]
 WHERE [okpo_resp] LIKE '%'+ @okpo_resp +'%'
 
@@ -112,7 +114,7 @@ CREATE PROCEDURE [dbo].[sp_search_password_name]
 
 AS
 
-SELECT [id], [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update]
+SELECT [id], [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update], [comment]
 FROM [dbo].[Password]
 WHERE [name_resp] LIKE '%'+ @name_resp +'%'
 
@@ -129,7 +131,8 @@ CREATE PROCEDURE [dbo].[sp_update_password]
 @okpo_resp NVARCHAR(15),
 @password_resp NVARCHAR(15),
 @date_update DATETIME OUTPUT,
-@user_update NVARCHAR(20) OUTPUT
+@user_update NVARCHAR(20) OUTPUT,
+@comment NVARCHAR(MAX) NULL
 
 AS
 
@@ -137,7 +140,7 @@ SET @date_update = GETDATE();
 SELECT @user_update = [nt_user_name] FROM sys.dm_exec_sessions WHERE session_id = @@SPID
 
 UPDATE [dbo].[Password] 
-SET [name_resp] = @name_resp, [okpo_resp] = @okpo_resp, [password_resp] = @password_resp, [date_update] = @date_update, [user_update] = @user_update
+SET [name_resp] = @name_resp, [okpo_resp] = @okpo_resp, [password_resp] = @password_resp, [date_update] = @date_update, [user_update] = @user_update, [comment] = @comment
 WHERE id = @id;
 
 GO
@@ -162,9 +165,25 @@ ON [dbo].[Password](okpo_resp);
  
 GO
 
-CREATE PROCEDURE sp_get_all_rows_for_save
+CREATE PROCEDURE [dbo].[sp_get_all_rows_for_save]
 
 AS
 
-SELECT [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update]
+SELECT [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update], [comment]
 FROM [dbo].[Password]
+
+GO
+
+CREATE PROCEDURE [dbo].[sp_insert_from_excel]
+@name_resp NVARCHAR(15),
+@okpo_resp NVARCHAR(15),
+@password_resp NVARCHAR(15),
+@comment NVARCHAR(15)
+
+AS
+
+SET @date_create = GETDATE();
+SELECT @user_create = [nt_user_name] FROM sys.dm_exec_sessions WHERE session_id = @@SPID;
+
+INSERT INTO [dbo].[Password] (name_resp, okpo_resp, password_resp, date_create, user_create, comment)
+VALUES(@name_resp, @okpo_resp, @password_resp, @date_create, @user_create, @comment);

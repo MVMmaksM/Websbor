@@ -58,5 +58,13 @@ namespace PasswordRespondents.Services
 
             return package.GetAsByteArray();
         }
+
+        public static ExcelWorksheet ReadExcel(string pathExcelFile) 
+        {
+            ExcelPackage package = new ExcelPackage(pathExcelFile);
+            ExcelWorksheet sheet = package.Workbook.Worksheets[0];
+
+            return sheet;
+        }
     }
 }
