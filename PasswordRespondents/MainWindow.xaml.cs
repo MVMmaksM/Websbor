@@ -17,9 +17,10 @@ using PasswordRespondents.Model;
 using PasswordRespondents.DataBase;
 using System.Data.SqlClient;
 using PasswordRespondents.Services;
+using Microsoft.Win32;
 
 namespace PasswordRespondents
-{   
+{
     public partial class MainWindow : Window
     {
         private DataTable _tableRespondents;
@@ -35,7 +36,7 @@ namespace PasswordRespondents
             _dbWork.GetShemaTable();
             dgDataPasswords.ItemsSource = _tableRespondents.DefaultView;
         }
-       
+
         private void MainWindow_Closed(object sender, EventArgs e)
         {
 
@@ -87,7 +88,14 @@ namespace PasswordRespondents
 
         private void MenuItemLoad_Click(object sender, RoutedEventArgs e)
         {
-            FileServices.SaveFile();
+            OpenFileDialog dialogLoad = new OpenFileDialog();
+            dialogLoad.Filter = "*.xlsx|*.xlsx";
+            dialogLoad.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            if (dialogLoad.ShowDialog() == true)
+            {
+               _dbWork.LoadFromDataTable(FileServices.ConvertExcelToDataTable(Excel.ReadExcel(dialogLoad.FileName)));
+            }
         }
 
         private void MenuItemLoadWebSbor_Click(object sender, RoutedEventArgs e)
@@ -96,12 +104,12 @@ namespace PasswordRespondents
         }
         private void MenuItemSaveAllRows_Click(object sender, RoutedEventArgs e)
         {
-           FileServices.SaveFaile("C:\\Users\\p45_VaganovMV\\Desktop\\Список.xlsx",Excel.CreateExcelRespondent(_dbWork.GetAllRowsForSave()));
+            FileServices.SaveFile("C:\\Users\\p45_VaganovMV\\Desktop\\Список.xlsx", Excel.CreateExcelRespondent(_dbWork.GetAllRowsForSave()));
         }
 
         private void MenuItemSaveCurrentRows_Click(object sender, RoutedEventArgs e)
         {
-            FileServices.SaveFaile("C:\\Users\\p45_VaganovMV\\Desktop\\Список.xlsx", Excel.CreateExcelRespondent(_dbWork.GetDataTableForCurrentSave()));
+            FileServices.SaveFile("C:\\Users\\p45_VaganovMV\\Desktop\\Список.xlsx", Excel.CreateExcelRespondent(_dbWork.GetDataTableForCurrentSave()));
         }
 
         private void MenuItemShemaEcxel_Click(object sender, RoutedEventArgs e)
@@ -141,7 +149,7 @@ namespace PasswordRespondents
 
         private void dgDataPasswords_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-
+            e.Row.Header = e.Row.GetIndex() + 1;
         }
 
         private void TxtBoxSearch_KeyDown(object sender, KeyEventArgs e)

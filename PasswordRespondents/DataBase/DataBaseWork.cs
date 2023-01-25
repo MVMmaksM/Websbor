@@ -138,7 +138,9 @@ namespace PasswordRespondents.DataBase
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 15, "password_resp") { Direction = ParameterDirection.Input });
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@comment", SqlDbType.NVarChar, 100, "comment") { Direction = ParameterDirection.Input });
 
-                SqlDataAdapter sqlDataAdapterLoadFromDataTable = new SqlDataAdapter(sqlCommandInsert);
+                SqlDataAdapter sqlDataAdapterLoadFromDataTable = new SqlDataAdapter();
+                sqlDataAdapterLoadFromDataTable.InsertCommand = sqlCommandInsert;
+               
                 updateCountRow = sqlDataAdapterLoadFromDataTable.Update(dataTableFromExcel);
 
                 if (dataTableFromExcel.HasErrors)

@@ -61,6 +61,8 @@ namespace PasswordRespondents.Services
 
         public static ExcelWorksheet ReadExcel(string pathExcelFile) 
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
             ExcelPackage package = new ExcelPackage(pathExcelFile);
             ExcelWorksheet sheet = package.Workbook.Worksheets[0];
 

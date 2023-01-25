@@ -28,7 +28,7 @@ namespace PasswordRespondents.Services
             }
         }
 
-        public DataTable ConvertExcelToDataTable(ExcelWorksheet sheet)
+        public static DataTable ConvertExcelToDataTable(ExcelWorksheet sheet)
         {
             DataTable dataTableRespondents = new DataTable();
 
