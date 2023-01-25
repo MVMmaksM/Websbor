@@ -76,7 +76,7 @@ namespace PasswordRespondents
         {
             try
             {
-                _dbWork.Search(SearchName.Text);
+                _dbWork.Search(SearchName.Text, SearchOkpo.Text);
             }
             catch (Exception ex)
             {

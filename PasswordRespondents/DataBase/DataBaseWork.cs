@@ -49,18 +49,47 @@ namespace PasswordRespondents.DataBase
             }
         }
 
-        public void Search(string nameResp) 
+        public void Search(string nameResp, string okpoResp) 
         {
-            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+            if (!string.IsNullOrWhiteSpace(nameResp)&&!string.IsNullOrWhiteSpace(okpoResp))
             {
-                SqlCommand sqlCommandSearch = new SqlCommand("sp_search_password", sqlConnection);
-                sqlCommandSearch.CommandType = CommandType.StoredProcedure;
-                sqlCommandSearch.Parameters.Add(new SqlParameter("@name_resp", nameResp) { Direction = ParameterDirection.Input });
-                SqlDataAdapter sqlDASearch = new SqlDataAdapter(sqlCommandSearch);
+                using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand sqlCommandSearch = new SqlCommand("sp_search_password_okpo_name", sqlConnection);
+                    sqlCommandSearch.CommandType = CommandType.StoredProcedure;
+                    sqlCommandSearch.Parameters.Add(new SqlParameter("@name_resp", nameResp) { Direction = ParameterDirection.Input });
+                    sqlCommandSearch.Parameters.Add(new SqlParameter("@okpo_resp", okpoResp) { Direction = ParameterDirection.Input });                    
 
-                DataTableWork.Clear();
+                    DataTableWork.Clear();
 
-                sqlDASearch.Fill(DataTableWork);
+                    new SqlDataAdapter(sqlCommandSearch).Fill(DataTableWork);                    
+                }
+            }
+            else if (!string.IsNullOrWhiteSpace(nameResp))
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand sqlCommandSearch = new SqlCommand("sp_search_password_okpo", sqlConnection);
+                    sqlCommandSearch.CommandType = CommandType.StoredProcedure;                  
+                    sqlCommandSearch.Parameters.Add(new SqlParameter("@okpo_resp", okpoResp) { Direction = ParameterDirection.Input });
+
+                    DataTableWork.Clear();
+
+                    new SqlDataAdapter(sqlCommandSearch).Fill(DataTableWork);
+                }
+            }
+            else if (!string.IsNullOrWhiteSpace(okpoResp))
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand sqlCommandSearch = new SqlCommand("sp_search_password_name", sqlConnection);
+                    sqlCommandSearch.CommandType = CommandType.StoredProcedure;
+                    sqlCommandSearch.Parameters.Add(new SqlParameter("@name_resp", nameResp) { Direction = ParameterDirection.Input });
+
+                    DataTableWork.Clear();
+
+                    new SqlDataAdapter(sqlCommandSearch).Fill(DataTableWork);
+                }
             }
         }
     }
