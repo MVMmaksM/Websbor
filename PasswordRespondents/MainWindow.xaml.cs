@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using PasswordRespondents.Model;
 using PasswordRespondents.DataBase;
 using System.Data.SqlClient;
+using PasswordRespondents.Services;
 
 namespace PasswordRespondents
 {   
@@ -95,7 +96,7 @@ namespace PasswordRespondents
         }
         private void MenuItemSaveAllRows_Click(object sender, RoutedEventArgs e)
         {
-
+           FileServices.SaveFaile("C:\\Users\\p45_VaganovMV\\Desktop\\Список.xls",Excel.CreateExcelRespondent(_dbWork.GetAllRowsForSave()));
         }
 
         private void MenuItemSaveCurrentRows_Click(object sender, RoutedEventArgs e)

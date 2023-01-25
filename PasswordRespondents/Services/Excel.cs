@@ -10,8 +10,10 @@ namespace PasswordRespondents.Services
 {
     internal class Excel
     {
-        public byte[] CreateExcelRespondent(DataTable dataTable) 
+        public static byte[] CreateExcelRespondent(DataTable dataTable) 
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            
             var package = new ExcelPackage();
             var sheet = package.Workbook.Worksheets.Add("Список респондентов");
             int rowsCount = dataTable.Rows.Count + 1;

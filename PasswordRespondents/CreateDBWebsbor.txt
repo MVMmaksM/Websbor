@@ -160,3 +160,11 @@ GO
 CREATE CLUSTERED INDEX idx_okpo_resp_password
 ON [dbo].[Password](okpo_resp);
  
+GO
+
+CREATE PROCEDURE sp_get_all_rows_for_save
+
+AS
+
+SELECT [name_resp], [okpo_resp], [password_resp], [date_create], [user_create], [date_update], [user_update]
+FROM [dbo].[Password]
