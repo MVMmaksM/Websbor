@@ -69,9 +69,9 @@ namespace PasswordRespondents.DataBase
             {
                 using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
                 {
-                    SqlCommand sqlCommandSearch = new SqlCommand("sp_search_password_okpo", sqlConnection);
+                    SqlCommand sqlCommandSearch = new SqlCommand("sp_search_password_name", sqlConnection);
                     sqlCommandSearch.CommandType = CommandType.StoredProcedure;                  
-                    sqlCommandSearch.Parameters.Add(new SqlParameter("@okpo_resp", okpoResp) { Direction = ParameterDirection.Input });
+                    sqlCommandSearch.Parameters.Add(new SqlParameter("@name_resp", nameResp) { Direction = ParameterDirection.Input });
 
                     DataTableWork.Clear();
 
@@ -82,9 +82,9 @@ namespace PasswordRespondents.DataBase
             {
                 using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
                 {
-                    SqlCommand sqlCommandSearch = new SqlCommand("sp_search_password_name", sqlConnection);
+                    SqlCommand sqlCommandSearch = new SqlCommand("sp_search_password_okpo", sqlConnection);
                     sqlCommandSearch.CommandType = CommandType.StoredProcedure;
-                    sqlCommandSearch.Parameters.Add(new SqlParameter("@name_resp", nameResp) { Direction = ParameterDirection.Input });
+                    sqlCommandSearch.Parameters.Add(new SqlParameter("@okpo_resp", okpoResp) { Direction = ParameterDirection.Input });
 
                     DataTableWork.Clear();
 
