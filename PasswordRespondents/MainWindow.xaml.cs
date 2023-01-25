@@ -101,7 +101,7 @@ namespace PasswordRespondents
 
         private void MenuItemSaveCurrentRows_Click(object sender, RoutedEventArgs e)
         {
-
+            FileServices.SaveFaile("C:\\Users\\p45_VaganovMV\\Desktop\\Список.xlsx", Excel.CreateExcelRespondent(_dbWork.GetDataTableForCurrentSave()));
         }
 
         private void MenuItemShemaEcxel_Click(object sender, RoutedEventArgs e)

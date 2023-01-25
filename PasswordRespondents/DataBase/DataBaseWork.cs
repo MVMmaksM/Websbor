@@ -101,17 +101,26 @@ namespace PasswordRespondents.DataBase
             }
         }
 
-        public DataTable GetAllRowsForSave() 
+        public DataTable GetAllRowsForSave()
         {
             DataTable dataTable = new DataTable();
 
             using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
                 SqlCommand sqlCommandGetAll = new SqlCommand("sp_get_all_rows_for_save", sqlConnection);
-                sqlCommandGetAll.CommandType = CommandType.StoredProcedure;           
-                
+                sqlCommandGetAll.CommandType = CommandType.StoredProcedure;
+
                 new SqlDataAdapter(sqlCommandGetAll).Fill(dataTable);
             }
+
+            return dataTable;
+        }
+
+        public DataTable GetDataTableForCurrentSave()
+        {
+            DataTable dataTable = DataTableWork.Copy();
+            dataTable.PrimaryKey = null;
+            dataTable.Columns.Remove("id");
 
             return dataTable;
         }
