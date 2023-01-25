@@ -17,14 +17,25 @@ namespace PasswordRespondents.Services
             await File.WriteAllBytesAsync(fullNameFile, bytesFile);
         }
 
+        public static async void SaveFaile(string fullNameFile, ICollection<string> collection)
+        {
+            using (StreamWriter strWriter = new StreamWriter(fullNameFile, false))
+            {
+                foreach (var str in collection)
+                {
+                    await strWriter.WriteLineAsync(str);
+                }
+            }
+        }
+
         public DataTable ConvertExcelToDataTable(ExcelWorksheet sheet)
         {
             DataTable dataTableRespondents = new DataTable();
 
             dataTableRespondents.Columns.AddRange(new DataColumn[4]
-            { new DataColumn("name", typeof(string)),
-            new DataColumn("okpo", typeof(string)),
-            new DataColumn ("password", typeof(string)),
+            { new DataColumn("name_resp", typeof(string)),
+            new DataColumn("okpo_resp", typeof(string)),
+            new DataColumn ("password_resp", typeof(string)),
             new DataColumn("comment", typeof(string))
             });
 
@@ -45,7 +56,7 @@ namespace PasswordRespondents.Services
                         newRow[cell.Start.Column - 1] = cell.Text.Trim();
                     }
 
-                    if (!string.IsNullOrWhiteSpace(newRow["name"].ToString()) && !string.IsNullOrWhiteSpace(newRow["okpo"].ToString()) && !string.IsNullOrWhiteSpace(newRow["password"].ToString())
+                    if (!string.IsNullOrWhiteSpace(newRow["name_resp"].ToString()) && !string.IsNullOrWhiteSpace(newRow["okpo_resp"].ToString()) && !string.IsNullOrWhiteSpace(newRow["password_resp"].ToString()))
                     {
                         dataTableRespondents.Rows.Add(newRow);
                     }
