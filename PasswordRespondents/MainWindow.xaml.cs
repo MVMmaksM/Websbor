@@ -87,7 +87,7 @@ namespace PasswordRespondents
 
         private void MenuItemLoad_Click(object sender, RoutedEventArgs e)
         {
-
+            FileServices.SaveFile();
         }
 
         private void MenuItemLoadWebSbor_Click(object sender, RoutedEventArgs e)

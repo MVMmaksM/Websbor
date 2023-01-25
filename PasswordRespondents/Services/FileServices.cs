@@ -12,12 +12,12 @@ namespace PasswordRespondents.Services
 {
     internal class FileServices
     {
-        public static async void SaveFaile(string fullNameFile, byte[] bytesFile)
+        public static async void SaveFile(string fullNameFile, byte[] bytesFile)
         {
             await File.WriteAllBytesAsync(fullNameFile, bytesFile);
         }
 
-        public static async void SaveFaile(string fullNameFile, ICollection<string> collection)
+        public static async void SaveFile(string fullNameFile, ICollection<string> collection)
         {
             using (StreamWriter strWriter = new StreamWriter(fullNameFile, false))
             {
