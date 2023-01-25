@@ -137,7 +137,7 @@ SET @date_update = GETDATE();
 SELECT @user_update = [nt_user_name] FROM sys.dm_exec_sessions WHERE session_id = @@SPID
 
 UPDATE [dbo].[Password] 
-SET name_resp = @name_resp, okpo_resp = @okpo_resp, password_resp = @password_resp, date_update = @date_update, user_update = @user_update
+SET [name_resp] = @name_resp, [okpo_resp] = @okpo_resp, [password_resp] = @password_resp, [date_update] = @date_update, [user_update] = @user_update
 WHERE id = @id;
 
 GO
