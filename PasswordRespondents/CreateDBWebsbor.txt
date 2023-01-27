@@ -132,7 +132,7 @@ CREATE PROCEDURE [dbo].[sp_update_password]
 @password_resp NVARCHAR(15),
 @date_update DATETIME OUTPUT,
 @user_update NVARCHAR(20) OUTPUT,
-@comment NVARCHAR(MAX) NULL
+@comment NVARCHAR(MAX)
 
 AS
 
@@ -178,7 +178,9 @@ CREATE PROCEDURE [dbo].[sp_insert_from_excel]
 @name_resp NVARCHAR(15),
 @okpo_resp NVARCHAR(15),
 @password_resp NVARCHAR(15),
-@comment NVARCHAR(15)
+@comment NVARCHAR(15),
+@date_create DATETIME,
+@user_create NVARCHAR(20)
 
 AS
 
