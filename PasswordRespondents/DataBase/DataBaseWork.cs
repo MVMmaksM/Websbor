@@ -174,6 +174,8 @@ namespace PasswordRespondents.DataBase
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@comment", SqlDbType.NVarChar, 100, "comment") { Direction = ParameterDirection.Input });
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@date_create", string.Empty) { Direction = ParameterDirection.Input });
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@user_create", string.Empty) { Direction = ParameterDirection.Input });
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@date_update", string.Empty) { Direction = ParameterDirection.Input });
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@user_update", string.Empty) { Direction = ParameterDirection.Input });
 
                 SqlDataAdapter sqlDataAdapterLoadFromDataTable = new SqlDataAdapter();
                 sqlDataAdapterLoadFromDataTable.InsertCommand = sqlCommandInsert;
