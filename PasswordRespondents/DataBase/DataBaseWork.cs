@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace PasswordRespondents.DataBase
 {
@@ -22,7 +23,7 @@ namespace PasswordRespondents.DataBase
             DataTableWork = dataTable;
             _sqlDataAdapter = sqlDataAdapter;
             _sqlDataAdapter.RowUpdated += SqlDataAdapter_RowUpdated;
-        }      
+        }
 
         private void SqlDataAdapter_RowUpdated(object sender, SqlRowUpdatedEventArgs e)
         {
@@ -32,15 +33,23 @@ namespace PasswordRespondents.DataBase
                     $"\nДобавить запись в БД?", "Ошибка", MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes)
                 {
                     e.Status = UpdateStatus.Continue;
-                    DataTableWork.;
-                    //DataTable dataTable = new Respondent().GetDataTableRespondent();
-                    //dataTable.Rows.Add(e.Row.Cop);
 
-                    //using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
-                    //{
-                    //    _sqlDataAdapter.InsertCommand.Connection = sqlConnection;
-                    //    _sqlDataAdapter.Update(dataTable);
-                    //}
+                    var res = DataTableWork.Select($"id={e.Row["id"]}");
+
+                    DataTableWork.AcceptChanges();
+
+                    res[0].SetAdded();
+
+                    try
+                    {
+                       int resultInsert = _sqlDataAdapter.Update(DataTableWork);
+
+                        MessageBox.Show($"Добавлено записей: {resultInsert}");
+                    }
+                    catch (Exception)
+                    {
+                       
+                    }
                 }
             }
         }
@@ -164,7 +173,7 @@ namespace PasswordRespondents.DataBase
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 15, "password_resp") { Direction = ParameterDirection.Input });
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@comment", SqlDbType.NVarChar, 100, "comment") { Direction = ParameterDirection.Input });
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@date_create", string.Empty) { Direction = ParameterDirection.Input });
-                sqlCommandInsert.Parameters.Add(new SqlParameter("@user_create", string.Empty ) { Direction = ParameterDirection.Input });
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@user_create", string.Empty) { Direction = ParameterDirection.Input });
 
                 SqlDataAdapter sqlDataAdapterLoadFromDataTable = new SqlDataAdapter();
                 sqlDataAdapterLoadFromDataTable.InsertCommand = sqlCommandInsert;
