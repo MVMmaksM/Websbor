@@ -1,4 +1,5 @@
 ﻿using PasswordRespondents.Model;
+using PasswordRespondents.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -125,12 +126,14 @@ namespace PasswordRespondents.DataBase
             return dataTable;
         }
 
-        public int LoadFromDataTable(DataTable dataTableFromExcel)
+        public (int countUpdate, int countHasError) LoadFromDataTable(DataTable dataTableFromExcel, string pathProtocolResult)
         {
-            int updateCountRow = default;
+            int countRowUpdate = default;
+            int countRowHasError = default;
 
             using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
+                
                 SqlCommand sqlCommandInsert = new SqlCommand("sp_insert_from_excel", sqlConnection);
                 sqlCommandInsert.CommandType = CommandType.StoredProcedure;
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 50, "name_resp") { Direction = ParameterDirection.Input });
@@ -140,18 +143,21 @@ namespace PasswordRespondents.DataBase
 
                 SqlDataAdapter sqlDataAdapterLoadFromDataTable = new SqlDataAdapter();
                 sqlDataAdapterLoadFromDataTable.InsertCommand = sqlCommandInsert;
-               
-                updateCountRow = sqlDataAdapterLoadFromDataTable.Update(dataTableFromExcel);
+
+                countRowUpdate = sqlDataAdapterLoadFromDataTable.Update(dataTableFromExcel);
 
                 if (dataTableFromExcel.HasErrors)
                 {
                     ICollection<string> updateErrors = GetErrorsUpdate(dataTableFromExcel);
+                    countRowHasError = updateErrors.Count;
 
-                    //метод сохранения протокола загрузки
+                    FileServices.SaveFile(pathProtocolResult, updateErrors);
                 }
             }
 
-            return updateCountRow;
+            var resultUpdate = (countUpdate: countRowUpdate, countHasError: countRowHasError);
+
+            return resultUpdate;
         }
 
         private ICollection<string> GetErrorsUpdate(DataTable dataTableErrors)

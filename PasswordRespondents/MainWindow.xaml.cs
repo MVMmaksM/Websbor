@@ -27,6 +27,7 @@ namespace PasswordRespondents
         private DataBaseWork _dbWork;
         private SqlDataAdapter _dataAdapterRespondent;
         private string _connectionString = "Data Source=p45-DB08;Initial Catalog=WebSbor_Password;Integrated Security=SSPI";
+        private string _pathProtocolResult = $"{Environment.CurrentDirectory}\\Protocol";
         public MainWindow()
         {
             InitializeComponent();
@@ -94,7 +95,9 @@ namespace PasswordRespondents
 
             if (dialogLoad.ShowDialog() == true)
             {
-               _dbWork.LoadFromDataTable(FileServices.ConvertExcelToDataTable(Excel.ReadExcel(dialogLoad.FileName)));
+                var resultUpdate = _dbWork.LoadFromDataTable(FileServices.ConvertExcelToDataTable(Excel.ReadExcel(dialogLoad.FileName)), string.Empty);
+                
+                MessageBox.Show($"Загружено записей: {resultUpdate.countUpdate}\nОшибочных записей: {resultUpdate.countHasError}\nПротокол загрузки: {string.Empty}");
             }
         }
 
