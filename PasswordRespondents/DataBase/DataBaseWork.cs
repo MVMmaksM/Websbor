@@ -133,16 +133,19 @@ namespace PasswordRespondents.DataBase
 
             using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
-                
+
                 SqlCommand sqlCommandInsert = new SqlCommand("sp_insert_from_excel", sqlConnection);
                 sqlCommandInsert.CommandType = CommandType.StoredProcedure;
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@name_resp", SqlDbType.NVarChar, 50, "name_resp") { Direction = ParameterDirection.Input });
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@okpo_resp", SqlDbType.NVarChar, 15, "okpo_Resp") { Direction = ParameterDirection.Input });
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 15, "password_resp") { Direction = ParameterDirection.Input });
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@comment", SqlDbType.NVarChar, 100, "comment") { Direction = ParameterDirection.Input });
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@date_create", string.Empty) { Direction = ParameterDirection.Input });
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@user_create", string.Empty ) { Direction = ParameterDirection.Input });
 
                 SqlDataAdapter sqlDataAdapterLoadFromDataTable = new SqlDataAdapter();
                 sqlDataAdapterLoadFromDataTable.InsertCommand = sqlCommandInsert;
+                sqlDataAdapterLoadFromDataTable.ContinueUpdateOnError = true;
 
                 countRowUpdate = sqlDataAdapterLoadFromDataTable.Update(dataTableFromExcel);
 
