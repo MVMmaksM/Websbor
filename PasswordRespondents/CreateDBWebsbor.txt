@@ -178,14 +178,28 @@ CREATE PROCEDURE [dbo].[sp_insert_from_excel]
 @name_resp NVARCHAR(15),
 @okpo_resp NVARCHAR(15),
 @password_resp NVARCHAR(15),
-@comment NVARCHAR(15),
 @date_create DATETIME,
-@user_create NVARCHAR(20)
+@user_create NVARCHAR(20),
+@date_update DATETIME,
+@user_update NVARCHAR(20),
+@comment NVARCHAR(MAX)
 
 AS
+
+BEGIN TRANSACTION
 
 SET @date_create = GETDATE();
 SELECT @user_create = [nt_user_name] FROM sys.dm_exec_sessions WHERE session_id = @@SPID;
 
-INSERT INTO [dbo].[Password] (name_resp, okpo_resp, password_resp, date_create, user_create, comment)
-VALUES(@name_resp, @okpo_resp, @password_resp, @date_create, @user_create, @comment);
+UPDATE [dbo].[Password] WITH (UPDLOCK, SERIALIZABLE)
+SET [name_resp] = @name_resp, [okpo_resp] = @okpo_resp, [password_resp] = @password_resp, [date_update] = @date_update, [user_update] = @user_update, [comment] = @comment
+WHERE okpo_resp = @okpo_resp;
+
+IF @@ROWCOUNT = 0
+
+BEGIN 
+	INSERT INTO [dbo].[Password] (name_resp, okpo_resp, password_resp, date_create, user_create, comment)
+	VALUES(@name_resp, @okpo_resp, @password_resp, @date_create, @user_create, @comment);
+END
+
+COMMIT TRANSACTION
