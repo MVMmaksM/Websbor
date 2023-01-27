@@ -32,7 +32,7 @@ namespace PasswordRespondents.DataBase
                     $"\nДобавить запись в БД?", "Ошибка", MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes)
                 {
                     e.Status = UpdateStatus.Continue;
-                    DataTableWork.AcceptChanges();
+                    DataTableWork.;
                     //DataTable dataTable = new Respondent().GetDataTableRespondent();
                     //dataTable.Rows.Add(e.Row.Cop);
 
