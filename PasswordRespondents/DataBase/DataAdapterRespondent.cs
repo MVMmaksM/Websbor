@@ -1,10 +1,12 @@
-﻿using System;
+﻿using PasswordRespondents.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PasswordRespondents.DataBase
 {
@@ -12,14 +14,14 @@ namespace PasswordRespondents.DataBase
     {
         public SqlDataAdapter GetSqlDataAdapterRespondent()
         {
-            var sqlDataAdapter = new SqlDataAdapter();
+            var sqlDataAdapter = new SqlDataAdapter();            
             sqlDataAdapter.SelectCommand = CreateSqlCommandSelect();
             sqlDataAdapter.InsertCommand = CreateSqlCommandInsert();
             sqlDataAdapter.UpdateCommand = CreateSqlCommandUpdate();
             sqlDataAdapter.DeleteCommand = CreateSqlCommandDelete();
 
             return sqlDataAdapter;
-        }
+        }        
 
         private SqlCommand CreateSqlCommandSelect() => new SqlCommand("sp_select_password") { CommandType = CommandType.StoredProcedure };
         private SqlCommand CreateSqlCommandUpdate()
@@ -32,6 +34,7 @@ namespace PasswordRespondents.DataBase
             sqlCommandUpdate.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 15, "password_resp") { Direction = ParameterDirection.Input });
             sqlCommandUpdate.Parameters.Add(new SqlParameter("@date_update", SqlDbType.DateTime, 0, "date_update") { Direction = ParameterDirection.Output });
             sqlCommandUpdate.Parameters.Add(new SqlParameter("@user_update", SqlDbType.NVarChar, 20, "user_update") { Direction = ParameterDirection.Output });
+            sqlCommandUpdate.Parameters.Add(new SqlParameter("@comment", SqlDbType.NVarChar, 20, "comment") { Direction = ParameterDirection.Input });
 
             return sqlCommandUpdate;
         }
@@ -45,6 +48,7 @@ namespace PasswordRespondents.DataBase
             sqlCommandInsert.Parameters.Add(new SqlParameter("@password_resp", SqlDbType.NVarChar, 15, "password_resp") { Direction = ParameterDirection.Input });
             sqlCommandInsert.Parameters.Add(new SqlParameter("@date_create", SqlDbType.DateTime, 0, "date_create") { Direction = ParameterDirection.Output });
             sqlCommandInsert.Parameters.Add(new SqlParameter("@user_create", SqlDbType.NVarChar, 20, "user_create") { Direction = ParameterDirection.Output });
+            sqlCommandInsert.Parameters.Add(new SqlParameter("@comment", SqlDbType.NVarChar, 20, "comment") { Direction = ParameterDirection.Input });
 
             return sqlCommandInsert;
         }

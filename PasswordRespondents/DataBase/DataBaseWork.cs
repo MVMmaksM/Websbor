@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PasswordRespondents.DataBase
 {
@@ -20,6 +21,28 @@ namespace PasswordRespondents.DataBase
             ConnectionString = connectionString;
             DataTableWork = dataTable;
             _sqlDataAdapter = sqlDataAdapter;
+            _sqlDataAdapter.RowUpdated += SqlDataAdapter_RowUpdated;
+        }      
+
+        private void SqlDataAdapter_RowUpdated(object sender, SqlRowUpdatedEventArgs e)
+        {
+            if ((e.Status == UpdateStatus.ErrorsOccurred) && (e.Errors?.GetType() == typeof(DBConcurrencyException)))
+            {
+                if (MessageBox.Show($"Обновляемая запись: ОКПО: {e.Row["okpo_resp"]} отсутствует в БД, возможно была удалена другим пользователем." +
+                    $"\nДобавить запись в БД?", "Ошибка", MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes)
+                {
+                    e.Status = UpdateStatus.Continue;
+                    DataTableWork.AcceptChanges();
+                    //DataTable dataTable = new Respondent().GetDataTableRespondent();
+                    //dataTable.Rows.Add(e.Row.Cop);
+
+                    //using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+                    //{
+                    //    _sqlDataAdapter.InsertCommand.Connection = sqlConnection;
+                    //    _sqlDataAdapter.Update(dataTable);
+                    //}
+                }
+            }
         }
 
         public void GetShemaTable()
