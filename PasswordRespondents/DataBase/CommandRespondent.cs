@@ -10,21 +10,10 @@ using System.Windows;
 
 namespace PasswordRespondents.DataBase
 {
-    internal class DataAdapterRespondent
+    internal class CommandRespondent
     {
-        public SqlDataAdapter GetSqlDataAdapterRespondent()
-        {
-            var sqlDataAdapter = new SqlDataAdapter();            
-            sqlDataAdapter.SelectCommand = CreateSqlCommandSelect();
-            sqlDataAdapter.InsertCommand = CreateSqlCommandInsert();
-            sqlDataAdapter.UpdateCommand = CreateSqlCommandUpdate();
-            sqlDataAdapter.DeleteCommand = CreateSqlCommandDelete();
-
-            return sqlDataAdapter;
-        }        
-
-        private SqlCommand CreateSqlCommandSelect() => new SqlCommand("sp_select_password") { CommandType = CommandType.StoredProcedure };
-        private SqlCommand CreateSqlCommandUpdate()
+        public static SqlCommand CreateSqlCommandSelect() => new SqlCommand("sp_select_password") { CommandType = CommandType.StoredProcedure };
+        public static SqlCommand CreateSqlCommandUpdate()
         {
             SqlCommand sqlCommandUpdate = new SqlCommand("sp_update_password");
             sqlCommandUpdate.CommandType = CommandType.StoredProcedure;
@@ -38,7 +27,7 @@ namespace PasswordRespondents.DataBase
 
             return sqlCommandUpdate;
         }
-        private SqlCommand CreateSqlCommandInsert()
+        public static SqlCommand CreateSqlCommandInsert()
         {
             SqlCommand sqlCommandInsert = new SqlCommand("sp_insert_password");
             sqlCommandInsert.CommandType = CommandType.StoredProcedure;
@@ -52,13 +41,13 @@ namespace PasswordRespondents.DataBase
 
             return sqlCommandInsert;
         }
-        private SqlCommand CreateSqlCommandDelete()
+        public static SqlCommand CreateSqlCommandDelete()
         {
             SqlCommand sqlCommandDelete = new SqlCommand("sp_delete_password");
             sqlCommandDelete.CommandType = CommandType.StoredProcedure;
             sqlCommandDelete.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 0, "id") { Direction = ParameterDirection.Input });
-           
+
             return sqlCommandDelete;
-        }       
+        }
     }
 }

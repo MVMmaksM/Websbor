@@ -33,7 +33,7 @@ namespace PasswordRespondents
         {
             InitializeComponent();
             _tableRespondents = new Respondent().GetDataTableRespondent();
-            _dataAdapterRespondent = new DataAdapterRespondent().GetSqlDataAdapterRespondent();
+            _dataAdapterRespondent = SqlDataAdapterRespondents.GetSqlDataAdapter();
             _dbWork = new DataBaseWork(_connectionString, _tableRespondents, _dataAdapterRespondent);
             _dbWork.GetShemaTable();
             dgDataPasswords.ItemsSource = _tableRespondents.DefaultView;
